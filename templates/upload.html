@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<ion-view title="上传" id="upload" class=" ">
+    <ion-content padding="true" class="has-header">
+        <p>ID = {{id}} 景点的上传页面</p>
+        <div class="card">
+            <div class="item item-divider">
+                评分：
+            </div>
+            <div class="item item-text-wrap">
+                <ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                评论：
+            </div>
+            <div class="item item-text-wrap">
+                <textarea rows="8" style="resize:none;width: 100%" placeholder="写下你的评论..."></textarea>
+            </div>
+        </div>
 
-</body>
-</html>
+        <a href="javascript:;" class="file">选择文件
+            <input type="file" name="" id="">
+        </a>
+        <a class="button icon-left ion-android-upload button-balanced">提交</a>
+
+
+        <!--<ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>-->
+        <div>
+            <a ui-sref="main.list" id="page12-button19"
+               class=" button button-positive  button-block ">返回项目列表页面</a>
+        </div>
+    </ion-content>
+</ion-view>

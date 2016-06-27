@@ -1,11 +1,11 @@
 angular.module('app.controllers', [])
 
-    .controller('listController', function($scope) {
+    .controller('listController', function ($scope) {
 
     })
 
-    .controller('nearbyController', function($scope) {
-        $scope.$on("$ionicView.loaded", function() {
+    .controller('nearbyController', function ($scope) {
+        $scope.$on("$ionicView.loaded", function () {
             console.log("123");
             var x1, y1, x2, y2;
             var map = new BMap.Map("allmap1");
@@ -18,7 +18,7 @@ angular.module('app.controllers', [])
                 showAddressBar: false,
                 enableAutoLocation: true
             });	// 左下角定位控件
-            geolocationControl.addEventListener("locationSuccess", function(e){
+            geolocationControl.addEventListener("locationSuccess", function (e) {
                 // 定位成功事件
                 var address = e.addressComponent.province + e.addressComponent.city
                     + e.addressComponent.district + e.addressComponent.street
@@ -26,7 +26,7 @@ angular.module('app.controllers', [])
                 map.setZoom(20);
                 console.log("当前定位地址为：" + address);
             });
-            geolocationControl.addEventListener("locationError",function(e){
+            geolocationControl.addEventListener("locationError", function (e) {
                 // 定位失败事件
                 console.log(e.message);
             });
@@ -34,38 +34,40 @@ angular.module('app.controllers', [])
                 var bs = map.getBounds();   //获取可视区域
                 var bssw = bs.getSouthWest();   //可视区域左下角
                 var bsne = bs.getNorthEast();   //可视区域右上角
-                x1 = bssw.lng; y1 = bssw.lat;
-                x2 = bsne.lng; y2 = bsne.lat;
-                console.log("(" + x1 + ", " + y1 + ") - (" + x2 + ", " + y2 + ")"  );
+                x1 = bssw.lng;
+                y1 = bssw.lat;
+                x2 = bsne.lng;
+                y2 = bsne.lat;
+                console.log("(" + x1 + ", " + y1 + ") - (" + x2 + ", " + y2 + ")");
             }
+
             map.addControl(geolocationControl);
             map.addEventListener("moveend", updateBounds);
             map.addEventListener("zoomend", updateBounds);
             map.addEventListener("dragend", updateBounds);
             map.addEventListener("load", updateBounds);
 
-            var point = new BMap.Point(116.400244,39.92556);
+            var point = new BMap.Point(116.400244, 39.92556);
             map.centerAndZoom(point, 12);
             var marker = new BMap.Marker(point);  // 创建标注
             map.addOverlay(marker);              // 将标注添加到地图中
 
-            var label = new BMap.Label("我是文字标注哦",{offset:new BMap.Size(20,-10)});
+            var label = new BMap.Label("我是文字标注哦", {offset: new BMap.Size(20, -10)});
             marker.setLabel(label);
 
-            $(window).load(function() {
+            $(window).load(function () {
                 $(".BMap_geolocationIcon").click();
             });
         });
     })
 
 
-
-    .controller('historyController', function($scope) {
+    .controller('historyController', function ($scope) {
 
     })
 
-    .controller('routeController', function($scope) {
-        $scope.$on("$ionicView.loaded", function() {
+    .controller('routeController', function ($scope) {
+        $scope.$on("$ionicView.loaded", function () {
             console.log("123");
             var x1, y1, x2, y2;
             var map = new BMap.Map("allmap2");
@@ -78,7 +80,7 @@ angular.module('app.controllers', [])
                 showAddressBar: false,
                 enableAutoLocation: true
             });	// 左下角定位控件
-            geolocationControl.addEventListener("locationSuccess", function(e){
+            geolocationControl.addEventListener("locationSuccess", function (e) {
                 // 定位成功事件
                 var address = e.addressComponent.province + e.addressComponent.city
                     + e.addressComponent.district + e.addressComponent.street
@@ -86,7 +88,7 @@ angular.module('app.controllers', [])
                 map.setZoom(20);
                 console.log("当前定位地址为：" + address);
             });
-            geolocationControl.addEventListener("locationError",function(e){
+            geolocationControl.addEventListener("locationError", function (e) {
                 // 定位失败事件
                 console.log(e.message);
             });
@@ -94,42 +96,55 @@ angular.module('app.controllers', [])
                 var bs = map.getBounds();   //获取可视区域
                 var bssw = bs.getSouthWest();   //可视区域左下角
                 var bsne = bs.getNorthEast();   //可视区域右上角
-                x1 = bssw.lng; y1 = bssw.lat;
-                x2 = bsne.lng; y2 = bsne.lat;
-                console.log("(" + x1 + ", " + y1 + ") - (" + x2 + ", " + y2 + ")"  );
+                x1 = bssw.lng;
+                y1 = bssw.lat;
+                x2 = bsne.lng;
+                y2 = bsne.lat;
+                console.log("(" + x1 + ", " + y1 + ") - (" + x2 + ", " + y2 + ")");
             }
+
             map.addControl(geolocationControl);
             map.addEventListener("moveend", updateBounds);
             map.addEventListener("zoomend", updateBounds);
             map.addEventListener("dragend", updateBounds);
             map.addEventListener("load", updateBounds);
 
-            var point = new BMap.Point(116.400244,39.92556);
+            var point = new BMap.Point(116.400244, 39.92556);
             map.centerAndZoom(point, 12);
             var marker = new BMap.Marker(point);  // 创建标注
             map.addOverlay(marker);              // 将标注添加到地图中
 
-            var label = new BMap.Label("我是文字标注哦",{offset:new BMap.Size(20,-10)});
+            var label = new BMap.Label("我是文字标注哦", {offset: new BMap.Size(20, -10)});
             marker.setLabel(label);
 
-            $(window).load(function() {
+            $(window).load(function () {
                 $(".BMap_geolocationIcon").click();
             });
         });
     })
 
-    .controller('surveyController', function($scope) {
+    .controller('surveyController', function ($scope) {
 
     })
 
-    .controller('viewTabController', function ($scope, $stateParams) {
-        $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    .controller('viewTabController', function ($scope, $stateParams, $state) {
+        $scope.tabClicked = function (page) {
             var id = parseInt($stateParams.id, 10);
             $scope.viewid = id;
-        });
+            console.log(id);
+            if (page == 2) {
+                $state.transitionTo('view.comment', {
+                    id: id
+                });
+            } else if (page == 4) {
+                $state.transitionTo('view.upload', {
+                    id: id
+                });
+            }
+        };
     })
 
-    .controller('detailController', function($scope, $stateParams, $ionicHistory) {
+    .controller('detailController', function ($scope, $stateParams, $ionicHistory) {
         $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
             viewData.enableBack = true;
             $scope.popover.hide();
@@ -137,13 +152,61 @@ angular.module('app.controllers', [])
         var id = parseInt($stateParams.id, 10);
         $scope.id = id;
         console.log("id = " + id);
-        $scope.$on("$ionicView.beforeLeave", function() {
+        $scope.ratingsObject = {
+            iconOn: 'ion-heart',
+            iconOff: 'ion-heart-broken',
+            //iconOn: 'ion-android-star',
+            //iconOff: 'ion-android-star-outline',
+            iconOnColor: 'rgb(237, 45, 45)',//'rgb(56, 126, 245)',  //Optional
+            iconOffColor:  'rgb(122, 122, 122)',    //Optional
+            rating:  3, //Optional
+            minRating:1,    //Optional
+            readOnly: false, //Optional
+            callback: function(rating) {    //Mandatory
+                $scope.ratingsCallback(rating);
+            }
+        };
+        $scope.$on("$ionicView.beforeLeave", function () {
+            $ionicHistory.removeBackView();
             //$ionicHistory.clearHistory();
             //$ionicHistory.clearCache();
         });
     })
 
-    .controller('commentController', function($scope, $stateParams, $ionicHistory) {
+    .controller('uploadController', function ($scope, $stateParams, $ionicHistory) {
+        $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+            viewData.enableBack = true;
+            $scope.popover.hide();
+        });
+        $scope.ratingsObject = {
+            iconOn: 'ion-heart',
+            iconOff: 'ion-heart-broken',
+            //iconOn: 'ion-android-star',
+            //iconOff: 'ion-android-star-outline',
+            iconOnColor: 'rgb(237, 45, 45)',//'rgb(56, 126, 245)',  //Optional
+            iconOffColor:  'rgb(122, 122, 122)',    //Optional
+            rating:  3, //Optional
+            minRating:1,    //Optional
+            readOnly: true, //Optional
+            callback: function(rating) {    //Mandatory
+                $scope.ratingsCallback(rating);
+            }
+        };
+        $scope.ratingsCallback = function(rating) {
+            console.log('Selected rating is : ', rating);
+        };
+
+        var id = parseInt($stateParams.id, 10);
+        $scope.id = id;
+        console.log("id = " + id);
+        $scope.$on("$ionicView.beforeLeave", function () {
+            $ionicHistory.removeBackView();
+            //$ionicHistory.clearHistory();
+            //$ionicHistory.clearCache();
+        });
+    })
+
+    .controller('commentController', function ($scope, $stateParams, $ionicHistory) {
         $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
             viewData.enableBack = true;
             $scope.popover.hide();
@@ -151,58 +214,59 @@ angular.module('app.controllers', [])
         var id = parseInt($stateParams.id, 10);
         $scope.id = id;
         console.log("id = " + id);
-        $scope.$on("$ionicView.beforeLeave", function() {
+        $scope.$on("$ionicView.beforeLeave", function () {
+            $ionicHistory.removeBackView();
             //$ionicHistory.clearHistory();
             //$ionicHistory.clearCache();
         });
     })
 
-    .controller('signupController', function($scope, $ionicSideMenuDelegate) {
-        $scope.$on("$ionicView.beforeLeave", function() {
+    .controller('signupController', function ($scope, $ionicSideMenuDelegate) {
+        $scope.$on("$ionicView.beforeLeave", function () {
             $ionicSideMenuDelegate.canDragContent(true);
         });
-        $scope.$on("$ionicView.afterEnter", function() {
+        $scope.$on("$ionicView.afterEnter", function () {
             $ionicSideMenuDelegate.canDragContent(false);
         });
 
     })
 
-    .controller('loginController', function($scope, $ionicSideMenuDelegate) {
-        $scope.$on("$ionicView.beforeLeave", function() {
+    .controller('loginController', function ($scope, $ionicSideMenuDelegate) {
+        $scope.$on("$ionicView.beforeLeave", function () {
             $ionicSideMenuDelegate.canDragContent(true);
         });
-        $scope.$on("$ionicView.afterEnter", function() {
+        $scope.$on("$ionicView.afterEnter", function () {
             $ionicSideMenuDelegate.canDragContent(false);
         });
     })
 
-    .controller('navBarController', function($scope, $state, $ionicPopover, $timeout) {
+    .controller('navBarController', function ($scope, $state, $ionicPopover, $timeout) {
         $scope.uiState = $state;
         $scope.animation = 'slide-in-up';
         // .fromTemplateUrl() method
         $ionicPopover.fromTemplateUrl('templates/menu.html', {
             scope: $scope,
             animation: $scope.animation
-        }).then(function(popover) {
+        }).then(function (popover) {
             $scope.popover = popover;
         });
 
-        $scope.openPopover = function($event) {
+        $scope.openPopover = function ($event) {
             $scope.popover.show($event);
         };
-        $scope.closePopover = function() {
+        $scope.closePopover = function () {
             $scope.popover.hide();
         };
         //Cleanup the popover when we're done with it!
-        $scope.$on('$destroy', function() {
+        $scope.$on('$destroy', function () {
             $scope.popover.remove();
         });
         // Execute action on hide popover
-        $scope.$on('popover.hidden', function() {
+        $scope.$on('popover.hidden', function () {
             // Execute action
         });
         // Execute action on remove popover
-        $scope.$on('popover.removed', function() {
+        $scope.$on('popover.removed', function () {
             // Execute action
         });
     })

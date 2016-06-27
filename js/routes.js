@@ -86,6 +86,16 @@ angular.module('app.routes', [])
                 }
             })
 
+            .state('view.upload', {
+                url: '/upload',
+                views: {
+                    'tab11': {
+                        templateUrl: 'templates/upload.html',
+                        controller: 'uploadController'
+                    }
+                }
+            })
+
             .state('signup', {
                 url: '/signup',
                 templateUrl: 'templates/signup.html',

@@ -1,7 +1,40 @@
 <ion-view title="详细资料" id="detail" class=" ">
     <ion-content padding="true" class="has-header">
-        <h1>ID = {{id}} 景点的详细资料页面</h1>
+        <p>ID = {{id}} 景点的详细资料页面</p>
 
+        <div class="card">
+            <div class="item item-divider">
+                满意度评分：
+            </div>
+            <div class="item item-text-wrap">
+                <img src="../img/ratings.png" style="width: 30%">
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                基本信息：
+            </div>
+            <div class="item item-text-wrap">
+                <textarea rows="8" style="resize:none;width: 100%" placeholder=""></textarea>
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                他人评论：
+            </div>
+            <div class="item item-text-wrap">
+                <textarea rows="8" style="resize:none;width: 100%" placeholder=""></textarea>
+            </div>
+        </div>
+        <div style="text-align: center; margin-bottom: 20px">
+            <button class="button  button-positive button-outline ">加入收藏</button>
+            <button class="button  button-positive button-outline">加入足迹</button>
+
+        </div>
+        <div style="text-align: center; margin-bottom: 20px">
+            <button class="button  button-positive button-outline">加入心愿</button>
+            <button class="button  button-positive button-outline">分享景点</button>
+        </div>
         <div>
             <a ui-sref="main.list" id="page12-button19"
                class=" button button-positive  button-block ">返回项目列表页面</a>
