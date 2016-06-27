@@ -14,8 +14,9 @@ angular.module('app.routes', [])
             })
 
             .state('view', {
-                url: '/view',
+                url: '/view/:id',
                 templateUrl: 'templates/viewTab.html',
+                controller: 'detailController',
                 abstract: true
             })
 
@@ -65,22 +66,22 @@ angular.module('app.routes', [])
                 controller: 'surveyController'
             })
 
-            .state('main.detail', {
-                url: '/detail/:id',
+            .state('view.detail', {
+                url: '/detail',
                 views: {
-                    'tab5': {
-                        templateUrl: 'templates/view.html',
+                    'tab8': {
+                        templateUrl: 'templates/detail.html',
                         controller: 'detailController'
                     }
                 }
             })
 
-            .state('view.detail', {
-                url: '/detail/:id',
+            .state('view.comment', {
+                url: '/comment',
                 views: {
-                    'tab8': {
-                        templateUrl: 'templates/view.html',
-                        controller: 'detailController'
+                    'tab9': {
+                        templateUrl: 'templates/comment.html',
+                        controller: 'commentController'
                     }
                 }
             })
@@ -97,7 +98,7 @@ angular.module('app.routes', [])
                 controller: 'loginController'
             })
 
-        $urlRouterProvider.otherwise('view/detail/10')
+        $urlRouterProvider.otherwise('main/nearby')
 
 
     });

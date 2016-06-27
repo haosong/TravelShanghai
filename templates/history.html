@@ -1,5 +1,46 @@
 <ion-view title="搜索历史" id="history" class=" ">
     <ion-content padding="true" class="has-header" scroll="false">
+        <div style="width: 290px; margin: 0 auto">
+            <div class="list card">
+                <div class="item item-avatar">
+                    <img src="avatar.jpg">
+                    <h2>1933老场坊</h2>
+                    <p>评分：100</p>
+                </div>
+            </div>
+            <div class="list card">
+                <div class="item item-avatar">
+                    <img src="avatar.jpg">
+                    <h2>近代公园</h2>
+                    <p>评分：90</p>
+                </div>
+            </div>
+            <div class="list card">
+                <div class="item item-avatar">
+                    <img src="avatar.jpg">
+                    <h2>黄兴公园</h2>
+                    <p>评分：10</p>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-bottom: 20px">
+            <button class="button button-small button-positive button-outline" style="width: 50px;">评分</button>
+            <button class="button button-small button-positive button-outline" style="width: 50px;">收藏</button>
+            <button class="button button-small button-positive button-outline" style="width: 50px;">足迹</button>
+            <button class="button button-small button-positive button-outline" style="width: 50px;">心愿</button>
+            <button class="button button-small button-positive button-outline" style="width: 50px;">推荐</button>
+        </div>
+
+        <div class="bar bar-header item-input-inset has-tabs-top" style="width: 285px; margin: 0 auto">
+            <label class="item-input-wrapper">
+                <i class="icon ion-ios-search placeholder-icon"></i>
+                <input type="search" placeholder="通过输入关键词搜索">
+            </label>
+            <button class="button button-outline">
+                搜索
+            </button>
+        </div>
+
         <div>
             <a ui-sref="view.detail({id: 10})" id="page12-button19"
                class=" button button-positive  button-block ">去 ID = 10 的 Detail 页面</a>

@@ -122,7 +122,28 @@ angular.module('app.controllers', [])
 
     })
 
+    .controller('viewTabController', function ($scope, $stateParams) {
+        $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+            var id = parseInt($stateParams.id, 10);
+            $scope.viewid = id;
+        });
+    })
+
     .controller('detailController', function($scope, $stateParams, $ionicHistory) {
+        $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+            viewData.enableBack = true;
+            $scope.popover.hide();
+        });
+        var id = parseInt($stateParams.id, 10);
+        $scope.id = id;
+        console.log("id = " + id);
+        $scope.$on("$ionicView.beforeLeave", function() {
+            //$ionicHistory.clearHistory();
+            //$ionicHistory.clearCache();
+        });
+    })
+
+    .controller('commentController', function($scope, $stateParams, $ionicHistory) {
         $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
             viewData.enableBack = true;
             $scope.popover.hide();
