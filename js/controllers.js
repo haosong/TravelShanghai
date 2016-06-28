@@ -1,7 +1,137 @@
 angular.module('app.controllers', [])
 
     .controller('listController', function ($scope) {
-
+        $scope.data = [
+            {
+                "type": "上海工业遗址1",
+                "attractions": [
+                    {
+                        "id": "1",
+                        "lng": "116.133",
+                        "lat": "36.384",
+                        "bounds": [
+                            {
+                                "lng": "xx.xx",
+                                "lat": "xx.xx"
+                            },
+                            {
+                                "lng": "xx.xx",
+                                "lat": "xx.xx"
+                            }
+                        ],
+                        "name": "1933老场坊1-1",
+                        "information": "这是景观的基本信息",
+                        "introduction": "这是关于景观的详细介绍",
+                        "rating": 4.4,
+                        "footprint": 6,
+                        "favor": 18,
+                        "wish": 5,
+                        "rating5": "100",
+                        "rating4": "80",
+                        "rating3": "60",
+                        "rating2": "20",
+                        "rating1": "10",
+                        "type": "上海工业遗址"
+                    },
+                    {
+                        "id": "2",
+                        "lng": "116.133",
+                        "lat": "36.384",
+                        "bounds": [
+                            {
+                                "lng": "xx.xx",
+                                "lat": "xx.xx"
+                            },
+                            {
+                                "lng": "xx.xx",
+                                "lat": "xx.xx"
+                            }
+                        ],
+                        "name": "1933老场坊1-2",
+                        "information": "这是景观的基本信息",
+                        "introduction": "这是关于景观的详细介绍",
+                        "rating": 4.2,
+                        "footprint": 20,
+                        "favor": 10,
+                        "wish": 15,
+                        "rating5": "100",
+                        "rating4": "80",
+                        "rating3": "60",
+                        "rating2": "20",
+                        "rating1": "10",
+                        "type": "上海工业遗址"
+                    }
+                ]
+            },
+            {
+                "type": "上海工业遗址2",
+                "attractions": [
+                    {
+                        "id": "2",
+                        "lng": "116.133",
+                        "lat": "36.384",
+                        "bounds": [
+                            {
+                                "lng": "xx.xx",
+                                "lat": "xx.xx"
+                            },
+                            {
+                                "lng": "xx.xx",
+                                "lat": "xx.xx"
+                            }
+                        ],
+                        "name": "1933老场坊2-1",
+                        "information": "这是景观的基本信息",
+                        "introduction": "这是关于景观的详细介绍",
+                        "rating": 4.4,
+                        "footprint": 6,
+                        "favor": 18,
+                        "wish": 5,
+                        "rating5": "100",
+                        "rating4": "80",
+                        "rating3": "60",
+                        "rating2": "20",
+                        "rating1": "10",
+                        "type": "上海工业遗址"
+                    },
+                    {
+                        "id": "2",
+                        "lng": "116.133",
+                        "lat": "36.384",
+                        "bounds": [
+                            {
+                                "lng": "xx.xx",
+                                "lat": "xx.xx"
+                            },
+                            {
+                                "lng": "xx.xx",
+                                "lat": "xx.xx"
+                            }
+                        ],
+                        "name": "1933老场坊2-2",
+                        "information": "这是景观的基本信息",
+                        "introduction": "这是关于景观的详细介绍",
+                        "rating": 4.2,
+                        "footprint": 20,
+                        "favor": 10,
+                        "wish": 15,
+                        "rating5": "100",
+                        "rating4": "80",
+                        "rating3": "60",
+                        "rating2": "20",
+                        "rating1": "10",
+                        "type": "上海工业遗址"
+                    }
+                ]
+            }
+        ];
+        $scope.tab = 0;
+        $scope.select = function (setTab) {
+          $scope.tab = setTab;  
+        };
+        $scope.isSelected = function (checkTab) {
+            return ($scope.tab === checkTab);
+        };
     })
 
     .controller('nearbyController', function ($scope) {
@@ -60,7 +190,6 @@ angular.module('app.controllers', [])
             });
         });
     })
-
 
     .controller('historyController', function ($scope) {
 
@@ -149,6 +278,42 @@ angular.module('app.controllers', [])
             viewData.enableBack = true;
             $scope.popover.hide();
         });
+        $scope.$on("$ionicView.loaded", function(){
+            var map = new BMap.Map("allMap3");
+            //map.centerAndZoom(new BMap.Point(121.558562, 31.221671), 18);
+            map.enableScrollWheelZoom();
+
+            addMarker(id);
+            addPloygon(id);
+
+            function addMarker(id){
+                var point = new BMap.Point(121.558562, 31.221671);
+                map.centerAndZoom(point, 15);
+                var marker = new BMap.Marker(point);
+                map.addOverlay(marker);
+            }
+            function addPloygon(id){
+                var polygon = new BMap.Polygon([
+                    new BMap.Point(121.548514, 31.218869),
+                    new BMap.Point(121.548712, 31.218467),
+                    new BMap.Point(121.554506, 31.216892),
+                    new BMap.Point(121.555925, 31.2168),
+                    new BMap.Point(121.557416, 31.217139),
+                    new BMap.Point(121.566058, 31.219641),
+                    new BMap.Point(121.567711, 31.219872),
+                    new BMap.Point(121.567917, 31.22032),
+                    new BMap.Point(121.566022, 31.228604),
+                    new BMap.Point(121.563049, 31.227554),
+                    new BMap.Point(121.560156, 31.226504),
+                    new BMap.Point(121.555018, 31.224999),
+                    new BMap.Point(121.552485, 31.22364),
+                    new BMap.Point(121.55058, 31.222065),
+                    new BMap.Point(121.549502, 31.22066),
+                    new BMap.Point(121.548532, 31.218915)
+                ], {strokeColor:"#f50704",fillColor:"", strokeWeight:3, strokeOpacity:0,fillOpacity:0,});
+                map.addOverlay(polygon);
+            }
+        });
         var id = parseInt($stateParams.id, 10);
         $scope.id = id;
         console.log("id = " + id);
@@ -167,7 +332,7 @@ angular.module('app.controllers', [])
             }
         };
         $scope.$on("$ionicView.beforeLeave", function () {
-            $ionicHistory.removeBackView();
+            //$ionicHistory.removeBackView();
             //$ionicHistory.clearHistory();
             //$ionicHistory.clearCache();
         });
@@ -200,7 +365,7 @@ angular.module('app.controllers', [])
         $scope.id = id;
         console.log("id = " + id);
         $scope.$on("$ionicView.beforeLeave", function () {
-            $ionicHistory.removeBackView();
+            //$ionicHistory.removeBackView();
             //$ionicHistory.clearHistory();
             //$ionicHistory.clearCache();
         });
@@ -214,8 +379,157 @@ angular.module('app.controllers', [])
         var id = parseInt($stateParams.id, 10);
         $scope.id = id;
         console.log("id = " + id);
+        $scope.$on("$ionicView.loaded", function () {
+            var map = new BMap.Map("allMap4");
+            var point = new BMap.Point(121.558562, 31.221671);
+            map.centerAndZoom(point, 15);
+            map.enableScrollWheelZoom();
+
+            addPloygon(id);
+            initMarkers(id);
+
+            var arr = {};
+            var number = 0;
+
+            function addPloygon(id){
+                var polygon = new BMap.Polygon([
+                    new BMap.Point(121.548514, 31.218869),
+                    new BMap.Point(121.548712, 31.218467),
+                    new BMap.Point(121.554506, 31.216892),
+                    new BMap.Point(121.555925, 31.2168),
+                    new BMap.Point(121.557416, 31.217139),
+                    new BMap.Point(121.566058, 31.219641),
+                    new BMap.Point(121.567711, 31.219872),
+                    new BMap.Point(121.567917, 31.22032),
+                    new BMap.Point(121.566022, 31.228604),
+                    new BMap.Point(121.563049, 31.227554),
+                    new BMap.Point(121.560156, 31.226504),
+                    new BMap.Point(121.555018, 31.224999),
+                    new BMap.Point(121.552485, 31.22364),
+                    new BMap.Point(121.55058, 31.222065),
+                    new BMap.Point(121.549502, 31.22066),
+                    new BMap.Point(121.548532, 31.218915)
+                ], {strokeColor:"#f50704",fillColor:"", strokeWeight:3, strokeOpacity:0,fillOpacity:0,});
+                map.addOverlay(polygon);
+            }
+            function initMarkers(id){
+                var message = "[{'type':3,'lng':121.565584,'lat':31.22606,'text':''}," +
+                    "{'type':4,'lng':121.55537,'lat':31.224179,'text':''}," +
+                    "{'type':2,'lng':121.564398,'lat':31.22316,'text':''}," +
+                    "{'type':15,'lng':121.553182,'lat':31.219163,'text':'12345678'}]";
+                var array = eval("(" + message + ")");
+                var l = array.length;
+
+                for (var i = 0; i < l; i++){
+                    var lng = array[i].lng;
+                    var lat = array[i].lat;
+                    var type = array[i].type;
+
+                    var marker = new BMap.Marker(new BMap.Point(lng, lat));
+                    map.addOverlay(marker);
+                    marker.disableDragging();
+                    if (type == 15 || type == 16){
+                        var label = new BMap.Label(array[i].text,{offset:new BMap.Size(20,-10)});
+                        marker.setLabel(label);
+                    }
+                }
+            }
+
+            document.getElementById("addActicityMarker1").onclick = function (){
+                addMarker(1);
+            }
+            document.getElementById("addActicityMarker2").onclick = function (){
+                addMarker(2);
+            }
+            document.getElementById("addActicityMarker3").onclick = function (){
+                addMarker(3);
+            }
+            document.getElementById("addActicityMarker4").onclick = function (){
+                addMarker(4);
+            }
+            document.getElementById("addActicityMarker5").onclick = function (){
+                addMarker(5);
+            }
+            document.getElementById("addActicityMarker6").onclick = function (){
+                addMarker(6);
+            }
+            document.getElementById("addActicityMarker7").onclick = function (){
+                addMarker(7);
+            }
+            document.getElementById("addActicityMarker8").onclick = function (){
+                addMarker(8);
+            }
+            document.getElementById("addActicityMarker9").onclick = function (){
+                addMarker(9);
+            }
+            document.getElementById("addActicityMarker10").onclick = function (){
+                addMarker(10);
+            }
+            document.getElementById("addActicityMarker11").onclick = function (){
+                addMarker(11);
+            }
+            document.getElementById("addActicityMarker12").onclick = function (){
+                addMarker(12);
+            }
+            document.getElementById("addActicityMarker13").onclick = function (){
+                addMarker(13);
+            }
+            document.getElementById("addActicityMarker14").onclick = function (){
+                addMarker(14);
+            }
+            document.getElementById("addActicityMarker15").onclick = function (){
+                addMarker(15);
+            }
+            document.getElementById("addActicityMarker16").onclick = function (){
+                addMarker(16);
+            }
+
+            function addMarker(type){
+                console.log("addMarker"+type);
+                // marker = new BMap.Marker(point);
+                var myIcon = new BMap.Icon("http://developer.baidu.com/map/jsdemo/img/fox.gif", new BMap.Size(300,157));
+                var marker = new BMap.Marker(point,{icon:myIcon});
+                map.addOverlay(marker);
+                marker.enableDragging();
+
+                var text = "";
+                if (type == 15){
+                    text = document.getElementById("commentTypeInput1").value;
+                    document.getElementById("commentTypeInput1").value = "";
+                    var label = new BMap.Label(text,{offset:new BMap.Size(20,-10)});
+                    marker.setLabel(label);
+                }
+                if (type == 16){
+                    text = document.getElementById("commentTypeInput2").value;
+                    document.getElementById("commentTypeInput2").value = "";
+                    var label = new BMap.Label(text,{offset:new BMap.Size(20,-10)});
+                    marker.setLabel(label);
+                }
+
+                marker.addEventListener("dragend", function(){
+                    marker.disableDragging();
+                    var obj = {
+                        "type": type,
+                        "lng": marker.getPosition().lng,
+                        "lat": marker.getPosition().lat,
+                        "text": text
+                    };
+                    arr["Item" + number] = obj;
+                    number++;
+                    console.log(number);
+                });
+            }
+
+            document.getElementById("saveCommentAndReturn").onclick = function(){
+                console.log("Save add marker.");
+                arr["number"] = number;
+                arr["id"] = id;
+                console.log(arr);
+                console.log(JSON.stringify(arr));
+            }
+        });
         $scope.$on("$ionicView.beforeLeave", function () {
-            $ionicHistory.removeBackView();
+            //$ionicHistory.removeBackView();
             //$ionicHistory.clearHistory();
             //$ionicHistory.clearCache();
         });

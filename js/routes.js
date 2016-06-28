@@ -16,7 +16,6 @@ angular.module('app.routes', [])
             .state('view', {
                 url: '/view/:id',
                 templateUrl: 'templates/viewTab.html',
-                controller: 'detailController',
                 abstract: true
             })
 

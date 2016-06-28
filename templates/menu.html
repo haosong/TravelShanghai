@@ -5,48 +5,47 @@
     <ion-content padding="false" scroll="false">
         <div class="tabs-striped tabs-background-stable tabs-top tabs-color-positive" style="height: 50px">
             <div class="tabs" style="top: 0px">
-                <a class="tab-item active" href="#">
-                    上海近代公园
-                </a>
-                <a class="tab-item" href="#">
-                    上海工业遗址
-                </a>
+                <li ng-repeat="category in data" role="presentation" ng-class="{active:isSelected({{$index}})}"
+                    class="tab-item">
+                    <a class="tab-item" ng-class="{active:isSelected({{$index}})}" href="#" role="tab"
+                       ng-click="select({{$index}})">{{category.type}}</a>
+                </li>
             </div>
         </div>
 
-        <div style="width: 290px; margin: 0 auto">
-            <div class="list card">
-                <div class="item item-avatar">
-                    <img src="avatar.jpg">
-                    <h2>1933老场坊</h2>
-                    <p>评分：100</p>
+        <div ng-init="sortBy = 'rating'">
+            <div ng-repeat="category in data" style="width: 290px; margin: 0 auto" ng-show="isSelected({{$index}})">
+                <div class="list card" ng-repeat="spot in category.attractions | orderBy: '-' + sortBy">
+                    <a ui-sref="view.detail({id: {{spot.id}}})" class="item item-avatar">
+                        <img ng-src="../img/{{spot.id}}.png">
+                        <h2>{{spot.name}}</h2>
+                        <p ng-show="sortBy == 'rating'">评分：{{spot.rating}}</p>
+                        <p ng-show="sortBy == 'favor'">收藏：{{spot.favor}}</p>
+                        <p ng-show="sortBy == 'footprint'">足迹：{{spot.footprint}}</p>
+                        <p ng-show="sortBy == 'wish'">心愿：{{spot.wish}}</p>
+                        <p ng-show="sortBy == 'recommend'">推荐指数：{{spot.wish}}</p>
+                        <p ng-show="sortBy == ''"></p>
+                    </a>
                 </div>
             </div>
-            <div class="list card">
-                <div class="item item-avatar">
-                    <img src="avatar.jpg">
-                    <h2>近代公园</h2>
-                    <p>评分：90</p>
-                </div>
+
+            <div style="text-align: center; margin-bottom: 20px">
+                <button class="button button-small button-positive button-outline" style="width: 50px;"
+                        ng-click="sortBy = 'rating'">评分
+                </button>
+                <button class="button button-small button-positive button-outline" style="width: 50px;"
+                        ng-click="sortBy = 'favor'">收藏
+                </button>
+                <button class="button button-small button-positive button-outline" style="width: 50px;"
+                        ng-click="sortBy = 'footprint'">足迹
+                </button>
+                <button class="button button-small button-positive button-outline" style="width: 50px;"
+                        ng-click="sortBy = 'wish'">心愿
+                </button>
+                <button class="button button-small button-positive button-outline" style="width: 50px;"
+                        ng-click="sortBy = 'recommend'">推荐
+                </button>
             </div>
-            <div class="list card">
-                <div class="item item-avatar">
-                    <img src="avatar.jpg">
-                    <h2>黄兴公园</h2>
-                    <p>评分：10</p>
-                </div>
-            </div>
-        </div>
-        <div>
-            <a ui-sref="view.detail({id: 11})" id="page12-button19"
-               class=" button button-positive  button-block ">去 ID = 11 的 Detail 页面</a>
-        </div>
-        <div style="text-align: center; margin-bottom: 20px;">
-            <button class="button button-small button-positive button-outline" style="width: 50px;">评分</button>
-            <button class="button button-small button-positive button-outline" style="width: 50px;">收藏</button>
-            <button class="button button-small button-positive button-outline" style="width: 50px;">足迹</button>
-            <button class="button button-small button-positive button-outline" style="width: 50px;">心愿</button>
-            <button class="button button-small button-positive button-outline" style="width: 50px;">推荐</button>
         </div>
 
         <div class="bar bar-header item-input-inset has-tabs-top" style="width: 285px; margin: 0 auto">

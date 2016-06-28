@@ -1,10 +1,116 @@
 <ion-view title="评论" id="comment" class=" ">
     <ion-content padding="true" class="has-header">
-        <h1>ID = {{id}} 景点的评论页面</h1>
+        <h3>ID = {{id}} 景点的评论页面</h3>
+
+        <div class="card">
+            <div id="allMap4" style="width:100%;height: 300px;"></div>
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">
+                可将以下图标定位置地图：（活动类型）
+            </div>
+            <table style="width: 100%; margin: 2px">
+                <tr style="width: 100%">
+                    <th style="width: 50%">
+                        <button id="addActicityMarker1"><img src="../img/marker/list_1_1.png"></button><span>步行活动区域</span>
+                    </th>
+                    <th style="width: 50%">
+                        <button id="addActicityMarker2"><img src="../img/marker/list_2_1.png"></button><span>运动健身区域</span>
+                    </th>
+                </tr>
+                <tr style="width: 100%; margin: 2px">
+                    <th style="width: 50%">
+                        <button id="addActicityMarker3"><img src="../img/marker/list_3_1.png"></button><span>饮食休息区域</span>
+                    </th>
+                    <th style="width: 50%">
+                        <button id="addActicityMarker4"><img src="../img/marker/list_4_1.png"></button><span>观赏风景区域</span>
+                    </th>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">
+                可将以下图标定位置地图：（场所类型）
+            </div>
+            <table style="width: 100%; margin: 2px">
+                <tr style="width: 100%; margin: 2px">
+                    <th style="width: 50%">
+                        <button id="addActicityMarker5"><img src="../img/marker/list_5_1.png"></button><span>休闲减压</span>
+                    </th>
+                    <th style="width: 50%">
+                        <button id="addActicityMarker6"><img src="../img/marker/list_6_1.png"></button><span>回归宁静</span>
+                    </th>
+                </tr>
+                <tr style="width: 100%">
+                    <th style="width: 50%">
+                        <button id="addActicityMarker7"><img src="../img/marker/list_7_1.png"></button><span>亲近自然</span>
+                    </th>
+                    <th style="width: 50%">
+                        <button id="addActicityMarker8"><img src="../img/marker/list_8_1.png"></button><span>锻炼健身</span>
+                    </th>
+                </tr>
+                <tr style="width: 100%; margin: 2px">
+                    <th style="width: 50%">
+                        <button id="addActicityMarker9"><img src="../img/marker/list_9_1.png"></button><span>聚会交友</span>
+                    </th>
+                    <th style="width: 50%">
+                        <button id="addActicityMarker10"><img src="../img/marker/list_10_1.png"></button><span>观察学习</span>
+                    </th>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">
+                可将以下图标定位置地图：（建议）
+            </div>
+            <table style="width: 100%; margin: 2px">
+                <tr style="width: 100%">
+                    <th style="width: 50%">
+                        <button id="addActicityMarker11"><img src="../img/marker/list_1_2.png"></button><span id="commentTypeItem1">添加绿色空间</span>
+                    </th>
+                    <th style="width: 50%">
+                        <button id="addActicityMarker12"><img src="../img/marker/list_2_2.png"></button><span id="commentTypeItem2">添加休息空间</span>
+                    </th>
+                </tr>
+                <tr style="width: 100%; margin: 2px">
+                    <th style="width: 50%">
+                        <button id="addActicityMarker13"><img src="../img/marker/list_3_2.png"></button><span id="commentTypeItem3">改进步行系统</span>
+                    </th>
+                    <th style="width: 50%">
+                        <button id="addActicityMarker14"><img src="../img/marker/list_4_2.png"></button><span id="commentTypeItem4">改善交通系统</span>
+                    </th>
+                </tr>
+                <tr style="width: 100%; ">
+                    <th>
+                        <div>
+                            <button id="addActicityMarker15"><img src="../img/marker/list_5_2.png"></button>
+                            <span id="commentTypeItem5">添加设施</span>
+                        </div>
+                        <input style="border: solid 1px #000000;" id="commentTypeInput1" type="text" />
+                    </th>
+                </tr>
+
+                <tr style="width: 100%; margin: 2px">
+                    <th>
+                        <button id="addActicityMarker16"><img src="../img/marker/list_6_2.png"></button>
+                        <span id="commentTypeItem6">其它</span></button>
+                        <input style="border: solid 1px #000000;" id="commentTypeInput2" type="text"/>
+                    </th>
+                </tr>
+            </table>
+
+        </div>
 
         <div>
-            <a ui-sref="main.list" id="page12-button19"
-               class=" button button-positive  button-block ">返回项目列表页面</a>
+            <button id="saveCommentAndReturn"
+                    class=" button button-positive  button-block ">保存并返回项目列表页面</button>
+            <a ui-sref="main.list" id="page12-button20"
+               class=" button button-positive  button-block ">取消并返回项目列表页面</a>
         </div>
     </ion-content>
 </ion-view>
