@@ -15,7 +15,8 @@
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=2.0&ak=wVe5hHG3Cg4mtoT9FGM1ifqkeox65Lty"></script>
 
-
+    <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -80,6 +81,48 @@
             right: 0;
             top: 0;
             opacity: 0;
+        }
+        .mark-button {
+            width: 135px;
+            height: 47px!important;
+            margin: 0!important;
+            border-radius: 4px;
+        }
+        .mark-input-button {
+            width: 135px!important;
+            height: 47px!important;
+            margin: 5px;
+            border-radius: 4px;
+        }
+        .mark-input {
+            width: 55%;
+            height: 47px!important;
+            margin: 5px;
+            border-radius: 4px;
+        }
+        .mark-button img {
+            margin-bottom: -7px;
+        }
+        .mark-input-button img {
+            margin-bottom: -7px;
+        }
+        .rating-percentage {
+            height: 120px;
+        }
+        .rating-progress {
+            margin: 4px 0px 0px 15px;
+
+        }
+        .rating-label {
+            position: relative;
+            top: -98px;
+            margin-left: 50%;
+            color: #7baaf7!important;
+        }
+        .rating-img {
+            max-width: 100px!important;
+            max-height: 100px!important;
+            width: 100px!important;
         }
     </style>
 

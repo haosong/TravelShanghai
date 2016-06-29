@@ -1,6 +1,6 @@
 <ion-view title="上传" id="upload" class=" ">
-    <ion-content padding="true" class="has-header">
-        <p>ID = {{id}} 景点的上传页面</p>
+    <ion-content padding="true" class="has-header" scroll="false">
+        <!--<p>ID = {{id}} 景点的上传页面</p>-->
         <div class="card">
             <div class="item item-divider">
                 评分：
@@ -18,10 +18,10 @@
             </div>
         </div>
 
-        <a href="javascript:;" class="file">选择文件
-            <input type="file" name="" id="">
-        </a>
+        <div style="width:175px; margin: 0 auto">
+        <a href="javascript:;" class="file">选择文件<input type="file"></a>
         <a class="button icon-left ion-android-upload button-balanced">提交</a>
+        </div>
 
 
         <!--<ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>-->

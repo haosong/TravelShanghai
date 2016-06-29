@@ -135,6 +135,12 @@ angular.module('app.controllers', [])
     })
 
     .controller('nearbyController', function ($scope) {
+        $("#nearbyButton").on('click', function(event){
+            event.preventDefault();
+            console.log("123");
+            $("#nearbyButton").unbind("click");
+            console.log("234");
+        });
         $scope.$on("$ionicView.loaded", function () {
             console.log("123");
             var x1, y1, x2, y2;
@@ -184,6 +190,22 @@ angular.module('app.controllers', [])
 
             var label = new BMap.Label("我是文字标注哦", {offset: new BMap.Size(20, -10)});
             marker.setLabel(label);
+
+
+            var searchInfoWindow3 = new BMapLib.SearchInfoWindow(map, "<a href='http://www.baidu.com'>asda</a>", {
+                title: "信息框3<a href='http://www.baidu.com'>asda</a>", //标题
+                width: 290, //宽度
+                height: 40, //高度
+                panel : "panel", //检索结果面板
+                enableAutoPan : true, //自动平移
+                searchTypes :[
+                ]
+            });
+            function openInfoWindow3() {
+                searchInfoWindow3.open(new BMap.Point(116.404, 39.915));
+            }
+
+            openInfoWindow3();
 
             $(window).load(function () {
                 $(".BMap_geolocationIcon").click();
@@ -274,6 +296,57 @@ angular.module('app.controllers', [])
     })
 
     .controller('detailController', function ($scope, $stateParams, $ionicHistory) {
+        $scope.response = {
+            "id": "1",
+            "lng": "116.133",
+            "lat": "36.384",
+            "bounds": [
+                {
+                    "lng": "xx.xx",
+                    "lat": "xx.xx"
+                },
+                {
+                    "lng": "xx.xx",
+                    "lat": "xx.xx"
+                }
+            ],
+            "name": "1933老场坊1-1",
+            "information": "这是景观的基本信息",
+            "introduction": "这是关于景观的详细介绍",
+            "rating": 4.4,
+            "footprint": 6,
+            "favor": 18,
+            "wish": 5,
+            "rating_percentage_1": 10,
+            "rating_percentage_2": 20,
+            "rating_percentage_3": 30,
+            "rating_percentage_4": 15,
+            "rating_percentage_5": 25,
+            "rating5": "100",
+            "rating4": "80",
+            "rating3": "60",
+            "rating2": "20",
+            "rating1": "10",
+            "type": "上海工业遗址",
+            "comment": [
+                {
+                    "user": "user-a",
+                    "comment": "这是user-a的评论"
+                },
+                {
+                    "user": "user-b",
+                    "comment": "这是user-b的评论"
+                },
+                {
+                    "user": "user-c",
+                    "comment": "这是user-c的评论"
+                },
+                {
+                    "user": "user-d",
+                    "comment": "这是user-d的评论"
+                }
+            ]
+        };
         $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
             viewData.enableBack = true;
             $scope.popover.hide();
@@ -424,8 +497,9 @@ angular.module('app.controllers', [])
                     var lng = array[i].lng;
                     var lat = array[i].lat;
                     var type = array[i].type;
-
-                    var marker = new BMap.Marker(new BMap.Point(lng, lat));
+                    var imgSrc = "http://pan01.qiniudn.com/adwebpj/img/marker/" + type + ".png";
+                    var myIcon = new BMap.Icon(imgSrc, new BMap.Size(33,27));
+                    var marker = new BMap.Marker(new BMap.Point(lng, lat),{icon:myIcon});
                     map.addOverlay(marker);
                     marker.disableDragging();
                     if (type == 15 || type == 16){
@@ -487,7 +561,8 @@ angular.module('app.controllers', [])
             function addMarker(type){
                 console.log("addMarker"+type);
                 // marker = new BMap.Marker(point);
-                var myIcon = new BMap.Icon("http://developer.baidu.com/map/jsdemo/img/fox.gif", new BMap.Size(300,157));
+                var imgSrc = "http://pan01.qiniudn.com/adwebpj/img/marker/" + type + ".png";
+                var myIcon = new BMap.Icon(imgSrc, new BMap.Size(33,27));
                 var marker = new BMap.Marker(point,{icon:myIcon});
                 map.addOverlay(marker);
                 marker.enableDragging();
