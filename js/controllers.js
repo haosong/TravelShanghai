@@ -218,60 +218,178 @@ angular.module('app.controllers', [])
     })
 
     .controller('routeController', function ($scope) {
+        $scope.id = "1231354";
+        var num = 0;
+        var marker;
+        var attractions;
+        var array = new Array();
+        var map;
+        var attractionId = -1;
+
+        $scope.cancel = function() {
+            $("#temp").css("display","none");
+        };
         $scope.$on("$ionicView.loaded", function () {
             console.log("123");
             var x1, y1, x2, y2;
-            var map = new BMap.Map("allmap2");
+            map = new BMap.Map("allmap2");
             console.log(map);// 创建Map实例
-            map.centerAndZoom(new BMap.Point(116.404, 39.915), 18);
+            map.centerAndZoom(new BMap.Point(121.480233, 31.236313), 12);
             map.enableScrollWheelZoom();                 // 启用滚轮放大缩小
-            var geolocationControl = new BMap.GeolocationControl({
-                anchor: BMAP_ANCHOR_BOTTOM_LEFT,
-                offset: new BMap.Size(15, 30),
-                showAddressBar: false,
-                enableAutoLocation: true
-            });	// 左下角定位控件
-            geolocationControl.addEventListener("locationSuccess", function (e) {
-                // 定位成功事件
-                var address = e.addressComponent.province + e.addressComponent.city
-                    + e.addressComponent.district + e.addressComponent.street
-                    + e.addressComponent.streetNumber;
-                map.setZoom(20);
-                console.log("当前定位地址为：" + address);
-            });
-            geolocationControl.addEventListener("locationError", function (e) {
-                // 定位失败事件
-                console.log(e.message);
-            });
-            function updateBounds(e) {
-                var bs = map.getBounds();   //获取可视区域
-                var bssw = bs.getSouthWest();   //可视区域左下角
-                var bsne = bs.getNorthEast();   //可视区域右上角
-                x1 = bssw.lng;
-                y1 = bssw.lat;
-                x2 = bsne.lng;
-                y2 = bsne.lat;
-                console.log("(" + x1 + ", " + y1 + ") - (" + x2 + ", " + y2 + ")");
+            initAttractions();
+
+            document.getElementById("routeSearch").onclick = function(){
+                var start = document.getElementById("routeStart").value;
+                var end = document.getElementById("routeEnd").value;
+                var options = {
+                    renderOptions:{map: map, autoViewport: true},
+                    onSearchComplete: function(results){
+                        if (driving.getStatus() == BMAP_STATUS_SUCCESS){
+                            // 获取第一条方案
+                            var plan = results.getPlan(0);
+                            // 获取方案的驾车线路
+                            var route = plan.getRoute(0);
+                            // 获取每个关键步骤,并输出到页面
+                            var s = [];
+                            for(var j = 0;j < plan.getNumRoutes(); j++){
+                                var route = plan.getRoute(j);
+                                console.log(plan.getNumRoutes());
+                                for (var i = 0; i < route.getNumSteps(); i++){
+                                    var step = route.getStep(i);
+                                    s.push((i + 1) + ". " + step.getDescription());
+                                    console.log(step.getPosition().lng + " " + step.getPosition().lat);
+                                    addAttractionToArray(step.getPosition().lng, step.getPosition().lat);
+                                }
+                            }
+                            addMarkerToMap();
+                        }
+                    }
+                };
+                var driving = new BMap.DrivingRoute(map, options);
+                driving.search("复旦大学", "世纪公园");
+                //driving.search(start, end);
             }
-
-            map.addControl(geolocationControl);
-            map.addEventListener("moveend", updateBounds);
-            map.addEventListener("zoomend", updateBounds);
-            map.addEventListener("dragend", updateBounds);
-            map.addEventListener("load", updateBounds);
-
-            var point = new BMap.Point(116.400244, 39.92556);
-            map.centerAndZoom(point, 12);
-            var marker = new BMap.Marker(point);  // 创建标注
-            map.addOverlay(marker);              // 将标注添加到地图中
-
-            var label = new BMap.Label("我是文字标注哦", {offset: new BMap.Size(20, -10)});
-            marker.setLabel(label);
-
-            $(window).load(function () {
-                $(".BMap_geolocationIcon").click();
-            });
         });
+
+        function initAttractions(){
+            attractions = [
+                {
+                    "id": 1,
+                    "lng": 121.560242,
+                    "lat": 31.216313,
+                    "name": "田添星1号基地",
+                    "information": "欢迎来到田添星1号基地。",
+                    "type": "上海近代公园"
+                },
+                {
+                    "id": 2,
+                    "lng": 121.560242,
+                    "lat": 31.226313,
+                    "name": "田添星2号基地",
+                    "information": "欢迎来到田添星2号基地。",
+                    "type": "上海近代公园"
+                },
+                {
+                    "id": 3,
+                    "lng": 121.560242,
+                    "lat": 31.236313,
+                    "name": "田添星3号基地",
+                    "information": "欢迎来到田添星3号基地。",
+                    "type": "上海近代公园"
+                },
+                {
+                    "id": 4,
+                    "lng": 121.560242,
+                    "lat": 31.246313,
+                    "name": "田添星4号基地",
+                    "information": "欢迎来到田添星4号基地。",
+                    "type": "上海工业基地"
+                },
+                {
+                    "id": 5,
+                    "lng": 121.560242,
+                    "lat": 31.256313,
+                    "name": "田添星5号基地",
+                    "information": "欢迎来到田添星5号基地。",
+                    "type": "上海工业基地"
+                }
+            ];
+        }
+        function addAttractionToArray(lng, lat){
+            var l = attractions.length;
+            for (var i = 0; i < l; i++){
+                var attractionlng = attractions[i].lng;
+                var attractionlat = attractions[i].lat;
+
+                var x = Math.abs(lng - attractionlng);
+                var y = Math.abs(lat - attractionlat);
+
+                //console.log(Math.sqrt(x*x + y*y));
+                if (Math.sqrt(x*x + y*y) < 1){
+                    //将合适的合适景点添加到数组中
+                    var ll = array.length;
+                    var ff = 0;
+                    for (var ii = 0; ii < ll; ii++){
+                        if (array[ii].id == attractions[i].id){
+                            ff = 1;
+                            break;
+                        }
+                    }
+                    if (ff == 0){
+                        var obj = {
+                            "id": attractions[i].id,
+                            "lng": attractions[i].lng,
+                            "lat": attractions[i].lat,
+                            "name": attractions[i].name,
+                            "information": attractions[i].information,
+                            "type": attractions[i].type
+                        }
+                        array.push(obj);
+                    }
+                }
+            }
+        }
+        function addMarkerToMap(){
+            console.log(array);
+            var l = array.length;
+            for (var i = 0; i < l; i++){
+                var point = new BMap.Point(array[i].lng, array[i].lat);
+                var marker = new BMap.Marker(point);
+                map.addOverlay(marker);
+                addClickHandler(marker, array[i].id, array[i].name);
+            }
+            function addClickHandler(marker, id, name){
+                marker.addEventListener("click",function(e){
+                    openInfo(e, id, name);
+                    $scope.id = id;
+                    $("#temp").css("display","block");
+                    console.log(id);
+                });
+            }
+            function openInfo(e, id, name){
+                attractionId = id;
+                var p = e.target;
+                var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+                var content = "";
+                var opts = {
+                    width : 50,     // 信息窗口宽度
+                    height: 25,     // 信息窗口高度
+                    title : "ID - Name" , // 信息窗口标题
+                    enableMessage:false//设置允许信息窗发送短息
+                };
+                var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象
+                map.openInfoWindow(infoWindow, point); //开启信息窗口
+                map.closeInfoWindow(infoWindow);
+                infoWindow.addEventListener("close", function(){
+                    $("#temp").css("display","none");
+                });
+            }
+        }
+
+        $scope.clickHref = function() {
+            console.log("...");
+            // window.location.href="http://email.163.com/";
+        }
     })
 
     .controller('surveyController', function ($scope) {
@@ -412,6 +530,8 @@ angular.module('app.controllers', [])
     })
 
     .controller('uploadController', function ($scope, $stateParams, $ionicHistory) {
+        $scope.rating = "";
+        $scope.content = "";
         $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
             viewData.enableBack = true;
             $scope.popover.hide();
@@ -432,6 +552,7 @@ angular.module('app.controllers', [])
         };
         $scope.ratingsCallback = function(rating) {
             console.log('Selected rating is : ', rating);
+            $scope.rating = rating;
         };
 
         var id = parseInt($stateParams.id, 10);

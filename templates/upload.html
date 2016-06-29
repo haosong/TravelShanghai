@@ -1,28 +1,33 @@
 <ion-view title="上传" id="upload" class=" ">
     <ion-content padding="true" class="has-header" scroll="false">
         <!--<p>ID = {{id}} 景点的上传页面</p>-->
-        <div class="card">
-            <div class="item item-divider">
-                评分：
+        <form method="post" enctype="multipart/form-data" action="/attraction.do">
+            <input type="hidden" name="action" value="addRating">
+            <div class="card">
+                <div class="item item-divider">
+                    评分：
+                </div>
+                <div class="item item-text-wrap">
+                    <ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>
+                    <input type="hidden" name="rating" value="{{rating}}">
+                    <input type="hidden" name="attractionId" value="{{id}}">
+                </div>
             </div>
-            <div class="item item-text-wrap">
-                <ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>
+            <div class="card">
+                <div class="item item-divider">
+                    评论：
+                </div>
+                <div class="item item-text-wrap">
+                    <textarea rows="8" style="resize:none;width: 100%" ng-model="content" placeholder="写下你的评论..."></textarea>
+                    <input type="hidden" name="content" value="{{content}}">
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="item item-divider">
-                评论：
-            </div>
-            <div class="item item-text-wrap">
-                <textarea rows="8" style="resize:none;width: 100%" placeholder="写下你的评论..."></textarea>
-            </div>
-        </div>
 
-        <div style="width:175px; margin: 0 auto">
-        <a href="javascript:;" class="file">选择文件<input type="file"></a>
-        <a class="button icon-left ion-android-upload button-balanced">提交</a>
-        </div>
-
+            <div style="width:175px; margin: 0 auto">
+                <a href="javascript:;" class="file">选择文件<input type="file" name="file"></a>
+                <a class="button icon-left ion-android-upload button-balanced">提交</a>
+            </div>
+        </form>
 
         <!--<ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>-->
         <div>
