@@ -17,6 +17,10 @@
 
     <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
     <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+
+    <script type="text/javascript" src="./js/autocomplete.js"></script>
+    <link rel="stylesheet" href="./style/autocomplete.css" />
+
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -98,7 +102,7 @@
             width: 55%;
             height: 47px!important;
             margin: 5px;
-            border-radius: 4px;
+            border-bottom: solid 1px #886aea!important;
         }
         .mark-button img {
             margin-bottom: -7px;
@@ -123,6 +127,14 @@
             max-width: 100px!important;
             max-height: 100px!important;
             width: 100px!important;
+        }
+        .bar-header {
+            background-color: #f8f8f8!important;
+            border-bottom: solid #b2b2b2 1px!important;
+        }
+        .my-bar-header {
+            border: 0!important;
+            background-color: #FFFFFF!important;
         }
     </style>
 

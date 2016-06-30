@@ -15,7 +15,9 @@ angular.module('app.routes', [])
 
             .state('view', {
                 url: '/view/:id',
+                cache: false,
                 templateUrl: 'templates/viewTab.html',
+                controller: 'viewTabController',
                 abstract: true
             })
 
@@ -67,6 +69,7 @@ angular.module('app.routes', [])
 
             .state('view.detail', {
                 url: '/detail',
+                cache: false,
                 views: {
                     'tab8': {
                         templateUrl: 'templates/detail.html',

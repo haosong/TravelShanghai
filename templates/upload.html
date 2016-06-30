@@ -3,7 +3,7 @@
         <!--<p>ID = {{id}} 景点的上传页面</p>-->
         <form method="post" enctype="multipart/form-data" action="/attraction.do">
             <input type="hidden" name="action" value="addRating">
-            <div class="card">
+            <div class="card" style="margin-top: 10px">
                 <div class="item item-divider">
                     评分：
                 </div>
@@ -25,7 +25,7 @@
 
             <div style="width:175px; margin: 0 auto">
                 <a href="javascript:;" class="file">选择文件<input type="file" name="file"></a>
-                <a class="button icon-left ion-android-upload button-balanced">提交</a>
+                <input type="submit" class="button icon-left ion-android-upload button-balanced" style="width: 82px" value="提交"/>
             </div>
         </form>
 

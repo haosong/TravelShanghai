@@ -1,0 +1,26 @@
+body {
+    margin: 0px;
+}
+.auto_hidden {
+    width:263px;
+    margin: 0 auto;
+    border: 1px solid #cccccc;
+    position:absolute;
+    display:none;
+}
+.auto_show {
+    border: 1px solid #cccccc;
+    display:block;
+    width:263px;
+    margin: 0 auto;
+}
+.auto_onmouseover{
+    color:#ffffff;
+    background-color:highlight;
+    width:100%;
+}
+.auto_onmouseout{
+    color:#000000;
+    width:100%;
+    background-color:#ffffff;
+}

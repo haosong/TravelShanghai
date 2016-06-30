@@ -1,8 +1,8 @@
-<ion-view title="详细资料" id="detail" class=" " ng-controller="detailController">
+<ion-view cache-view="false" title="详细资料" id="detail" class=" " ng-controller="detailController">
     <ion-content padding="true" class="has-header">
         <!--<p>ID = {{id}} 景点的详细资料页面</p>-->
-        <div class="card">
-            <div id="allMap3" style="width:100%;height:300px;"></div>
+        <div class="card" style="margin-top: 8px">
+            <div id="{{id}}" style="width:100%;height:300px"></div>
         </div>
         <div class="card">
             <div class="item item-divider">
@@ -12,17 +12,17 @@
                 <div class="list">
                     <a class="item item-thumbnail-left rating-percentage" href="#">
                         <img class="rating-img" src="../img/ratings.png">
-                        <progress class="rating-progress" max="100" value="{{response.rating_percentage_1}}"></progress>
-                        <progress class="rating-progress" max="100" value="{{response.rating_percentage_2}}"></progress>
-                        <progress class="rating-progress" max="100" value="{{response.rating_percentage_3}}"></progress>
-                        <progress class="rating-progress" max="100" value="{{response.rating_percentage_4}}"></progress>
-                        <progress class="rating-progress" max="100" value="{{response.rating_percentage_5}}"></progress>
+                        <progress class="rating-progress" max="100" value="{{response.rating1}}"></progress>
+                        <progress class="rating-progress" max="100" value="{{response.rating2}}"></progress>
+                        <progress class="rating-progress" max="100" value="{{response.rating3}}"></progress>
+                        <progress class="rating-progress" max="100" value="{{response.rating4}}"></progress>
+                        <progress class="rating-progress" max="100" value="{{response.rating5}}"></progress>
                         <div class="rating-label" style="display: block">
-                            <span class="" style="display: block">{{response.rating_percentage_1}}%</span>
-                            <span class="" style="display: block">{{response.rating_percentage_2}}%</span>
-                            <span class="" style="display: block">{{response.rating_percentage_3}}%</span>
-                            <span class="" style="display: block">{{response.rating_percentage_4}}%</span>
-                            <span class="" style="display: block">{{response.rating_percentage_5}}%</span>
+                            <span class="" style="display: block">{{response.rating1}}%</span>
+                            <span class="" style="display: block">{{response.rating2}}%</span>
+                            <span class="" style="display: block">{{response.rating3}}%</span>
+                            <span class="" style="display: block">{{response.rating4}}%</span>
+                            <span class="" style="display: block">{{response.rating5}}%</span>
                         </div>
                     </a>
                 </div>

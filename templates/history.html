@@ -31,19 +31,20 @@
             <button class="button button-small button-positive button-outline" style="width: 50px;">推荐</button>
         </div>
 
-        <div class="bar bar-header item-input-inset has-tabs-top" style="width: 285px; margin: 0 auto">
+        <div class="bar bar-header my-bar-header item-input-inset has-tabs-top"
+             style="width: 285px; margin: 0 auto;padding-bottom: 0px">
             <label class="item-input-wrapper">
                 <i class="icon ion-ios-search placeholder-icon"></i>
-                <input type="search" placeholder="通过输入关键词搜索">
+                <div style="padding-top:0px">
+                    <input type="text" placeholder="请输入景点名进行搜索" id="search"/>
+                </div>
             </label>
-            <button class="button button-outline">
-                搜索
-            </button>
+            <!--<button class="button button-outline">-->
+            <!--搜索-->
+            <!--</button>-->
         </div>
 
-        <div>
-            <a ui-sref="view.detail({id: 10})" id="page12-button19"
-               class=" button button-positive  button-block ">去 ID = 10 的 Detail 页面</a>
-        </div>
+        <div class="auto_hidden" id="autocomplete"></div>
+
     </ion-content>
 </ion-view>

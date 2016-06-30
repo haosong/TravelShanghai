@@ -1,4 +1,9 @@
-<ion-view title="Tabs Controller" id="tabsController" class=" ">
+<ion-view cache-view="false" title="Tabs Controller" id="tabsController" class=" ">
+    <ion-nav-bar style="background-color: #f8f8f8!important;">
+        <ion-nav-back-button class="button icon-left ion-ios-arrow-left button-clear button-dark" ng-click="myGoBack()">
+            &nbsp;返回
+        </ion-nav-back-button>
+    </ion-nav-bar>
     <ion-tabs class="tabs-stable tabs-icon-top fade-in-not-out" id="tabsController-tabs1" ng-controller="viewTabController">
         <ion-tab title="详细资料" icon="ion-document-text" ui-sref="view.detail" id="tabsController-nearby" class=" ">
             <ion-nav-view name="tab8"></ion-nav-view>
