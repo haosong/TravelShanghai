@@ -1,6 +1,6 @@
 angular.module('app.controllers', [])
 
-    .controller('listController', function ($scope) {
+    .controller('listController', function ($scope, $rootScope) {
         $scope.data = [
             {
                 "type": "上海工业遗址1",
@@ -132,9 +132,12 @@ angular.module('app.controllers', [])
         $scope.isSelected = function (checkTab) {
             return ($scope.tab === checkTab);
         };
+        $scope.$on("$ionicView.loaded", function () {
+            $rootScope.name = "main.list";
+        });
     })
 
-    .controller('nearbyController', function ($scope) {
+    .controller('nearbyController', function ($scope, $rootScope) {
         $scope.showList = false;
         $scope.selectAtrraction = [];
         var attractionsType = [];
@@ -142,6 +145,7 @@ angular.module('app.controllers', [])
         var map;
         var id;
         $scope.$on("$ionicView.loaded", function () {
+            $rootScope.name = "main.nearby";
             console.log("123");
             var x1, y1, x2, y2;
             map = new BMap.Map("allmap1");
@@ -357,9 +361,9 @@ angular.module('app.controllers', [])
         }
     })
 
-    .controller('historyController', function ($scope) {
+    .controller('historyController', function ($scope, $rootScope) {
         $scope.$on("$ionicView.loaded", function () {
-
+            $rootScope.name = "main.history";
         });
         var allAttractionArray = ['b0', 'b12', 'b22', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b2', 'abd', 'ab',
             'acd', 'accd', 'b1', 'cd', 'ccd', 'cbcv', 'cxf', '复旦大学', '张江大学', '世纪公园', '中山公园'];
@@ -369,7 +373,7 @@ angular.module('app.controllers', [])
         }
     })
 
-    .controller('routeController', function ($scope) {
+    .controller('routeController', function ($scope, $rootScope) {
         $scope.id = "1231354";
         var num = 0;
         var marker;
@@ -384,6 +388,7 @@ angular.module('app.controllers', [])
             document.getElementById("temp").style.display = "none";
         };
         $scope.$on("$ionicView.loaded", function () {
+            $rootScope.name = "main.route";
             console.log("123");
             var x1, y1, x2, y2;
             map = new BMap.Map("allmap2");
@@ -579,7 +584,7 @@ angular.module('app.controllers', [])
 
     })
 
-    .controller('viewTabController', function ($scope, $stateParams, $state) {
+    .controller('viewTabController', function ($scope, $stateParams, $state,$rootScope) {
         $scope.tabClicked = function (page) {
             var id = parseInt($stateParams.id, 10);
             $scope.viewid = id;
@@ -596,7 +601,7 @@ angular.module('app.controllers', [])
         };
         $scope.myGoBack = function () {
             console.log("!23");
-            $state.go('main.list');
+            $state.go($rootScope.name);
         };
     })
 
