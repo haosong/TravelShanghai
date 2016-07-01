@@ -110,7 +110,13 @@ angular.module('app.routes', [])
                 controller: 'loginController'
             })
 
-        $urlRouterProvider.otherwise('main/nearby')
+            .state('index', {
+                url: '/index',
+                templateUrl: 'templates/index.html',
+                controller: 'indexController'
+            })
+
+        $urlRouterProvider.otherwise('index')
 
 
     });

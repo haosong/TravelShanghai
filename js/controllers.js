@@ -921,6 +921,15 @@ angular.module('app.controllers', [])
         });
     })
 
+    .controller('indexController', function ($scope, $ionicSideMenuDelegate) {
+        $scope.$on("$ionicView.beforeLeave", function () {
+            $ionicSideMenuDelegate.canDragContent(true);
+        });
+        $scope.$on("$ionicView.afterEnter", function () {
+            $ionicSideMenuDelegate.canDragContent(false);
+        });
+    })
+    
     .controller('signupController', function ($scope, $ionicSideMenuDelegate) {
         $scope.$on("$ionicView.beforeLeave", function () {
             $ionicSideMenuDelegate.canDragContent(true);
@@ -928,7 +937,6 @@ angular.module('app.controllers', [])
         $scope.$on("$ionicView.afterEnter", function () {
             $ionicSideMenuDelegate.canDragContent(false);
         });
-
     })
 
     .controller('loginController', function ($scope, $ionicSideMenuDelegate) {
