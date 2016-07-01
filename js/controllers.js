@@ -132,6 +132,9 @@ angular.module('app.controllers', [])
         $scope.isSelected = function (checkTab) {
             return ($scope.tab === checkTab);
         };
+        $scope.$on("$ionicView.enter", function () {
+            $rootScope.name = "main.list";
+        });
         $scope.$on("$ionicView.loaded", function () {
             $rootScope.name = "main.list";
         });
@@ -144,6 +147,9 @@ angular.module('app.controllers', [])
         var types = [false, false];
         var map;
         var id;
+        $scope.$on("$ionicView.enter", function () {
+            $rootScope.name = "main.nearby";
+        });
         $scope.$on("$ionicView.loaded", function () {
             $rootScope.name = "main.nearby";
             console.log("123");
@@ -365,6 +371,9 @@ angular.module('app.controllers', [])
         $scope.$on("$ionicView.loaded", function () {
             $rootScope.name = "main.history";
         });
+        $scope.$on("$ionicView.enter", function () {
+            $rootScope.name = "main.history";
+        });
         var allAttractionArray = ['b0', 'b12', 'b22', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b2', 'abd', 'ab',
             'acd', 'accd', 'b1', 'cd', 'ccd', 'cbcv', 'cxf', '复旦大学', '张江大学', '世纪公园', '中山公园'];
         var autoComplete = new AutoComplete('search', 'autocomplete', allAttractionArray);
@@ -387,6 +396,9 @@ angular.module('app.controllers', [])
             //$scope.showDetail = false;
             document.getElementById("temp").style.display = "none";
         };
+        $scope.$on("$ionicView.enter", function () {
+            $rootScope.name = "main.route";
+        });
         $scope.$on("$ionicView.loaded", function () {
             $rootScope.name = "main.route";
             console.log("123");
