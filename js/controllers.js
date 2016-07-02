@@ -929,7 +929,7 @@ angular.module('app.controllers', [])
             $ionicSideMenuDelegate.canDragContent(false);
         });
     })
-    
+
     .controller('signupController', function ($scope, $ionicSideMenuDelegate) {
         $scope.$on("$ionicView.beforeLeave", function () {
             $ionicSideMenuDelegate.canDragContent(true);
@@ -948,10 +948,14 @@ angular.module('app.controllers', [])
         });
     })
 
-    .controller('navBarController', function ($scope, $state, $ionicPopover, $timeout) {
+    .controller('navBarController', function ($scope, $state, $ionicPopover, $ionicSideMenuDelegate, $timeout) {
         $scope.uiState = $state;
         $scope.animation = 'slide-in-up';
         // .fromTemplateUrl() method
+        $scope.quit = function () {
+            $ionicSideMenuDelegate.toggleLeft();
+            $state.go('index');
+        };
         $ionicPopover.fromTemplateUrl('templates/menu.html', {
             scope: $scope,
             animation: $scope.animation
@@ -977,6 +981,48 @@ angular.module('app.controllers', [])
         $scope.$on('popover.removed', function () {
             // Execute action
         });
+    })
+
+    .controller('footprintController', function ($scope, $rootScope, $state, $ionicSideMenuDelegate) {
+        $scope.data = ['复旦大学','世纪公园','张江大学','上海大学'];
+        $scope.$on("$ionicView.beforeEnter", function () {
+            $ionicSideMenuDelegate.toggleLeft();
+        });
+        $scope.back = function() {
+            $state.go($rootScope.name);
+        };
+        $scope.delete = function(item) {
+            $scope.data.splice(item,1);
+            console.log($scope.data);
+        }
+    })
+
+    .controller('wishController', function ($scope, $rootScope, $state, $ionicSideMenuDelegate) {
+        $scope.data = ['复旦大学','世纪公园','张江大学','上海大学'];
+        $scope.$on("$ionicView.beforeEnter", function () {
+            $ionicSideMenuDelegate.toggleLeft();
+        });
+        $scope.back = function() {
+            $state.go($rootScope.name);
+        };
+        $scope.delete = function(item) {
+            $scope.data.splice(item,1);
+            console.log($scope.data);
+        }
+    })
+
+    .controller('favorController', function ($scope, $rootScope, $state, $ionicSideMenuDelegate) {
+        $scope.data = ['复旦大学','世纪公园','张江大学','上海大学'];
+        $scope.$on("$ionicView.beforeEnter", function () {
+            $ionicSideMenuDelegate.toggleLeft();
+        });
+        $scope.back = function() {
+            $state.go($rootScope.name);
+        };
+        $scope.delete = function(item) {
+            $scope.data.splice(item,1);
+            console.log($scope.data);
+        }
     })
 ;
  

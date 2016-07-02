@@ -98,6 +98,24 @@ angular.module('app.routes', [])
                 }
             })
 
+            .state('footprint', {
+                url: '/footprint',
+                templateUrl: 'templates/footprint.html',
+                controller: 'footprintController'
+            })
+
+            .state('wish', {
+                url: '/wish',
+                templateUrl: 'templates/wish.html',
+                controller: 'wishController'
+            })
+
+            .state('favor', {
+                url: '/favor',
+                templateUrl: 'templates/favor.html',
+                controller: 'favorController'
+            })
+
             .state('signup', {
                 url: '/signup',
                 templateUrl: 'templates/signup.html',
