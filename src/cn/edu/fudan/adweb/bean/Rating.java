@@ -137,6 +137,13 @@ public class Rating {
             rating.put("content", content);
             rating.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(time));
             rating.put("attachment", attachment);
+            if (attachment.contains(".jpg") || attachment.contains(".jpeg") || attachment.contains(".png")) {
+                rating.put("attachmentType", "img");
+            } else if (attachment.contains(".mp4") || attachment.contains(".mkv") || attachment.contains(".avi")) {
+                rating.put("attachmentType", "video");
+            } else if (attachment.contains(".js")) {
+                rating.put("attachmentType", "js");
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

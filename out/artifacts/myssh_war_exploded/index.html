@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionicratings/ionic-ratings.min.js"></script>
+
+    <!--<script src="lib/jquery.min.js"></script>-->
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    <!--<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=wVe5hHG3Cg4mtoT9FGM1ifqkeox65Lty"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.min.js"></script>
+    <script src="./lib/three/three.min.js"></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+    <script type="text/javascript" src="./js/upload.js"></script>
+    <script type="text/javascript" src="./js/autocomplete.js"></script>
+    <link rel="stylesheet" href="./style/autocomplete.css" />
+    <script type="text/javascript" src="./js/jquery-3.0.0.min.js"></script>
+
+
+
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+
+
+    <style type="text/css">
+        .platform-ios .manual-ios-statusbar-padding {
+            padding-top: 20px;
+        }
+
+        .manual-remove-top-padding {
+            padding-top: 0px;
+        }
+
+        .manual-remove-top-padding .scroll {
+            padding-top: 0px !important;
+        }
+
+        ion-list.manual-list-fullwidth div.list, .list.card.manual-card-fullwidth {
+            margin-left: -10px;
+            margin-right: -10px;
+        }
+
+        ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidth > .item {
+            border-radius: 0px;
+            border-left: 0px;
+            border-right: 0px;
+        }
+
+        .uselessTab {
+            display: none!important;
+        }
+
+        .back-text {
+            opacity: 0!important;
+        }
+
+        .ionic_ratings .icon {
+            font-size: 30px;
+            padding: 2px;
+        }
+
+        .file {
+            position: relative;
+            display: inline-block;
+            background: #387ef5;
+            border: 1px solid #387ef5;
+            border-radius: 4px;
+            padding: 4px 12px;
+            overflow: hidden;
+            color: #FFFFFF;
+            text-decoration: none;
+            text-indent: 0;
+            line-height: 37px;
+        }
+        .file input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+        }
+        .mark-button {
+            width: 135px;
+            height: 47px!important;
+            margin: 0!important;
+            border-radius: 4px;
+        }
+        .mark-input-button {
+            width: 135px!important;
+            height: 47px!important;
+            margin: 5px;
+            border-radius: 4px;
+        }
+        .mark-input {
+            width: 55%;
+            height: 47px!important;
+            margin: 5px;
+            border-bottom: solid 1px #886aea!important;
+        }
+        .mark-button img {
+            margin-bottom: -7px;
+        }
+        .mark-input-button img {
+            margin-bottom: -7px;
+        }
+        .rating-percentage {
+            height: 120px;
+            padding-right: 0px;
+        }
+        .rating-progress {
+            margin: 4px 0px 0px 15px;
+        }
+        .rating-label {
+            position: relative;
+            top: -98px;
+            margin-left: 80%;
+            color: #7baaf7!important;
+        }
+        .rating-img {
+            max-width: 100px!important;
+            max-height: 100px!important;
+            width: 100px!important;
+        }
+        .bar-header {
+            background-color: #f8f8f8!important;
+            border-bottom: solid #b2b2b2 1px!important;
+        }
+        .my-bar-header {
+            border: 0!important;
+            background-color: #FFFFFF!important;
+        }
+
+        .tangram-suggestion-main {
+            display: block;
+            z-index: 1000;
+            width: 300px;
+        }
+    </style>
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
+
+    <!-- Only required for Tab projects w/ pages in multiple tabs
+    <script src="lib/ionicuirouter/ionicUIRouter.js"></script>
+    -->
+
+</head>
+<body ng-app="app" animation="slide-left-right-ios7">
+<div ng-controller="navBarController">
+    <ion-spinner></ion-spinner>
+    <ion-side-menus enable-menu-with-back-views="false" data-componentid="side-menu21">
+        <ion-side-menu-content>
+            <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+                <ion-nav-back-button></ion-nav-back-button>
+                <ion-nav-buttons side="left">
+                    <div ng-if="(uiState.current.url != '/login') && (uiState.current.url != '/signup') && (uiState.current.url != '/footprint')">
+                        <button class="button button-icon button-clear ion-ios-contact" menu-toggle="left"></button>
+                    </div>
+                </ion-nav-buttons>
+                <ion-nav-buttons side="right">
+                    <div ng-if="(uiState.current.url != '/login') && (uiState.current.url != '/signup') && (uiState.current.url != '/footprint')">
+                        <button class="button button-icon button-clear ion-navicon" ng-click="openPopover($event)"></button>
+                    </div>
+                </ion-nav-buttons>
+            </ion-nav-bar>
+            <ion-nav-view animation="slide-left-right"></ion-nav-view>
+        </ion-side-menu-content>
+        <ion-side-menu side="left" id="side-menu21">
+            <ion-header-bar class="bar-stable">
+                <div class="title">我的</div>
+            </ion-header-bar>
+            <ion-content padding="true" class="side-menu-left has-header" scroll="false" style="margin: 10px">
+                <ion-list id="side-menu21-list2" class=" " data-componentid="list2">
+                    <ion-item class="item-avatar item-icon-right  " id="side-menu21-list-item7"
+                              data-componentid="list-item7">
+                        <img ng-src="{{$root.userHead}}">
+                        <h2>{{$root.userName}}</h2>
+                        <!--<i class="icon ion-edit icon-accessory"></i>-->
+                    </ion-item>
+                </ion-list>
+                <!--<div id="side-menu21-button-bar3" class=" button-bar" data-componentid="button-bar3">-->
+                    <!--<button id="side-menu21-button16" class=" button button-positive  button-block button-outline "-->
+                            <!--data-componentid="button16">登陆-->
+                    <!--</button>-->
+                    <!--<button id="side-menu21-button17" class=" button button-positive  button-block button-outline "-->
+                            <!--data-componentid="button17">注册-->
+                    <!--</button>-->
+                <!--</div>-->
+                <button id="side-menu21-button7"
+                        class=" button button-positive  button-block button-outline icon-left ion-android-locate "
+                        data-componentid="button7" ui-sref="footprint">足迹
+                </button>
+                <button id="side-menu21-button8"
+                        class=" button button-positive  button-block button-outline icon-left ion-heart "
+                        data-componentid="button8" ui-sref="wish">心愿单
+                </button>
+                <button id="side-menu21-button9"
+                        class=" button button-positive  button-block button-outline icon-left ion-android-star "
+                        data-componentid="button9" ui-sref="favor">收藏
+                </button>
+                <button id="side-menu21-button10"
+                        class=" button button-positive  button-block button-outline icon-left ion-android-share-alt "
+                        data-componentid="button10">分享
+                </button>
+                <button id="side-menu21-button11"
+                        class=" button button-positive  button-block button-outline icon-left ion-information-circled "
+                        data-componentid="button11">关于
+                </button>
+                <button id="side-menu21-button12"
+                        class=" button button-assertive  button-block button-default icon-left ion-android-walk "
+                        data-componentid="button12" ng-click="quit()">退出
+                </button>
+            </ion-content>
+        </ion-side-menu>
+    </ion-side-menus>
+
+</div>
+</body>
+</html>

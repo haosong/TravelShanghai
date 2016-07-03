@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<link href="index.css" rel="stylesheet" type="text/css"/>
+  	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=wVe5hHG3Cg4mtoT9FGM1ifqkeox65Lty"></script>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<title>高级web示例</title>
+</head>
+
+<body>
+	<div id="header">
+		<div id="header-menu">
+			<button>菜单</button>
+		</div>
+		<div id="header-title">城市景观大众点评</div>
+	</div>
+	<div id="allmap"></div>
+	<div id="search">
+		<input type="text" id="search-bar" name="searchContent" placeholder="搜索输入框"/>
+		<button id="search-button">搜索</button>
+	</div>
+
+	<div id="layer">
+		<div class="title">图层</div>
+		<div class="items">
+			<div><input name="item0" type="checkbox" value="" />上海近代公园</div>
+			<div><input name="item1" type="checkbox" value="" />上海工业遗址</div>
+		</div>
+	</div>
+	<div id="footer">
+		<div id="footer-list">项目列表</div>
+		<div id="footer-nearby">附近</div>
+		<div id="footer-history">搜索历史</div>
+		<div id="footer-route">路线规划</div>
+		<div id="footer-my">我的</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var x1, y1, x2, y2;
+	var map = new BMap.Map("allmap");            // 创建Map实例
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 18);
+	map.enableScrollWheelZoom();                 // 启用滚轮放大缩小
+	var geolocationControl = new BMap.GeolocationControl({
+		anchor: BMAP_ANCHOR_BOTTOM_LEFT,
+		offset: new BMap.Size(15, 30),
+		showAddressBar: false,
+    	enableAutoLocation: true
+	});	// 左下角定位控件
+	geolocationControl.addEventListener("locationSuccess", function(e){
+		// 定位成功事件
+	    var address = e.addressComponent.province + e.addressComponent.city
+			+ e.addressComponent.district + e.addressComponent.street
+			+ e.addressComponent.streetNumber;
+		map.setZoom(20);
+    	console.log("当前定位地址为：" + address);
+  	});
+	geolocationControl.addEventListener("locationError",function(e){
+    	// 定位失败事件
+    	console.log(e.message);
+  	});
+	function updateBounds(e) {
+		var bs = map.getBounds();   //获取可视区域
+		var bssw = bs.getSouthWest();   //可视区域左下角
+		var bsne = bs.getNorthEast();   //可视区域右上角
+		x1 = bssw.lng; y1 = bssw.lat;
+		x2 = bsne.lng; y2 = bsne.lat;
+		console.log("(" + x1 + ", " + y1 + ") - (" + x2 + ", " + y2 + ")"  );
+	}
+	map.addControl(geolocationControl);
+	map.addEventListener("moveend", updateBounds);
+	map.addEventListener("zoomend", updateBounds);
+	map.addEventListener("dragend", updateBounds);
+	map.addEventListener("load", updateBounds);
+	$(window).load(function() {
+        $(".BMap_geolocationIcon").click();
+    });
+</script>

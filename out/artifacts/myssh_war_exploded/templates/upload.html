@@ -1,0 +1,40 @@
+<ion-view title="上传" id="upload" class=" ">
+    <ion-content padding="true" class="has-header" scroll="false">
+        <!--<p>ID = {{id}} 景点的上传页面</p>-->
+        <form method="post" enctype="multipart/form-data" action="/attraction.do">
+            <input type="hidden" name="action" value="addRating">
+            <div class="card" style="margin-top: 10px">
+                <div class="item item-divider">
+                    评分：
+                </div>
+                <div class="item item-text-wrap">
+                    <ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>
+                    <input type="hidden" name="rating" value="{{rating}}">
+                    <input type="hidden" name="attractionId" value="{{id}}">
+                </div>
+            </div>
+            <div class="card">
+                <div class="item item-divider">
+                    评论：
+                </div>
+                <div class="item item-text-wrap">
+                    <textarea rows="8" style="resize:none;width: 100%" ng-model="content" placeholder="写下你的评论..."></textarea>
+                    <input type="hidden" name="content" value="{{content}}">
+                </div>
+            </div>
+
+            <div style="width:175px; margin: 0 auto">
+                <a href="javascript:;" class="file">选择文件<input type="file" name="file"></a>
+                <input type="submit" class="button icon-left ion-android-upload button-balanced" style="width: 82px" value="提交"/>
+            </div>
+        </form>
+
+        <!--<ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>-->
+        <div>
+            <a ui-sref="main.list" id="page12-button19"
+               class=" button button-positive  button-block ">返回项目列表页面</a>
+        </div>
+
+        <!--<iframe style="display: none" id="rfFrame" name = "rfFrame" src="about:blank"></iframe>-->
+    </ion-content>
+</ion-view>

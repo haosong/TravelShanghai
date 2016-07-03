@@ -1,0 +1,71 @@
+<ion-view title="调查问卷" id="survey" class=" ">
+    <ion-nav-bar style="background-color: #f8f8f8!important;">
+        <ion-nav-back-button class="button icon-left ion-ios-arrow-left button-clear button-dark" ng-click="myGoBack()">
+            &nbsp;返回
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content padding="true" class="has-header" scroll="false">
+        <!--<p>ID = {{id}} 景点的上传页面</p>-->
+        <div class="list">
+
+            <div class="card">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        你对这个景点的印象是？
+                    </div>
+                    <select>
+                        <option selected>完美</option>
+                        <option>Naive</option>
+                        <option>Simple</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="card">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        你会向好友推荐这个景点么？
+                    </div>
+                    <select>
+                        <option selected>应该会</option>
+                        <option>应该不会</option>
+                        <option>肯定会</option>
+                        <option>肯定不会</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="card">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        这个调查问卷有意思么？
+                    </div>
+                    <select>
+                        <option selected>有意思</option>
+                        <option>没意思</option>
+                        <option>Too Simple</option>
+                        <option>Naive</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="card">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        觉得这个APP如何？
+                    </div>
+                    <select>
+                        <option selected>满分好评</option>
+                        <option>太棒了</option>
+                        <option>很好用</option>
+                    </select>
+                </label>
+            </div>
+
+            <button class=" button button-positive  button-block" ng-click="submit()">提交</button>
+            <button class=" button button-assertive  button-block" ng-click="cancel()">取消</button>
+
+
+        </div>
+    </ion-content>
+</ion-view>

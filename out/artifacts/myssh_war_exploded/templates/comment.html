@@ -1,0 +1,134 @@
+<ion-view title="评论" id="comment" class=" ">
+    <ion-content padding="true" class="has-header">
+        <!--<h3>ID = {{id}} 景点的评论页面</h3>-->
+        <div class="card" style="margin-top: 8px">
+            <div id="allMap4" style="width:100%;height: 300px;"></div>
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">
+                可将以下图标定位置地图：（活动类型）
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="button button-icon button-outline button-positive mark-button"
+                            id="addActicityMarker1" ng-click="addMarker(1)"><img src="../img/marker/1.png"> 步行活动区
+                    </button>
+                    <!--<span>步行活动区域</span>-->
+                </div>
+                <div class="col">
+                    <button class="button button-icon button-outline button-positive mark-button"
+                            id="addActicityMarker2" ng-click="addMarker(2)"><img src="../img/marker/2.png"> 运动健身区
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="button button-icon button-outline button-positive mark-button"
+                            id="addActicityMarker3" ng-click="addMarker(3)"><img src="../img/marker/3.png"> 饮食休息区
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="button button-icon button-outline button-positive mark-button"
+                            id="addActicityMarker4" ng-click="addMarker(4)"><img src="../img/marker/4.png"> 观赏风景区
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">
+                可将以下图标定位置地图：（场所类型）
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="button button-icon button-outline button-assertive mark-button"
+                            id="addActicityMarker5" ng-click="addMarker(5)"><img src="../img/marker/5.png"> 休闲减压
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="button button-icon button-outline button-assertive mark-button"
+                            id="addActicityMarker6" ng-click="addMarker(6)"><img src="../img/marker/6.png"> 回归宁静
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="button button-icon button-outline button-assertive mark-button"
+                            id="addActicityMarker7" ng-click="addMarker(7)"><img src="../img/marker/7.png"> 亲近自然
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="button button-icon button-outline button-assertive mark-button"
+                            id="addActicityMarker8" ng-click="addMarker(8)"><img src="../img/marker/8.png"> 锻炼健身
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="button button-icon button-outline button-assertive mark-button"
+                            id="addActicityMarker9" ng-click="addMarker(9)"><img src="../img/marker/9.png"> 聚会交友
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="button button-icon button-outline button-assertive mark-button"
+                            id="addActicityMarker10" ng-click="addMarker(10)"><img src="../img/marker/10.png"> 观察学习
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">
+                可将以下图标定位置地图：（建议）
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="button button-icon button-outline button-royal mark-button" id="addActicityMarker11" ng-click="addMarker(11)">
+                        <img src="../img/marker/11.png"> 加绿化区
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="button button-icon button-outline button-royal mark-button" id="addActicityMarker12" ng-click="addMarker(12)">
+                        <img src="../img/marker/12.png"> 加休息区
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="button button-icon button-outline button-royal mark-button" id="addActicityMarker13" ng-click="addMarker(13)">
+                        <img src="../img/marker/13.png"> 改进步道
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="button button-icon button-outline button-royal mark-button" id="addActicityMarker14" ng-click="addMarker(14)">
+                        <img src="../img/marker/14.png"> 改善交通
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <button class="button button-icon button-outline button-royal mark-input-button"
+                        id="addActicityMarker15" ng-click="addMarker(15)"><img src="../img/marker/15.png"> 添加设备
+                </button>
+                <input class="mark-input" id="commentTypeInput1"
+                       placeholder=" 输入建议添加的设备：" type="text"/>
+            </div>
+            <div class="row">
+                <button class="button button-icon button-outline button-royal mark-input-button"
+                        id="addActicityMarker16" ng-click="addMarker(16)"><img src="../img/marker/16.png"> 其它建议
+                </button>
+                <input class="mark-input" id="commentTypeInput2"
+                       placeholder=" 输入其他建议：" type="text"/>
+            </div>
+        </div>
+
+        <div>
+            <button id="saveCommentAndReturn"
+                    class=" button button-positive  button-block ">保存
+            </button>
+        </div>
+        <div>
+            <button class=" button button-positive  button-block" ng-click="goSurvey()">调查问卷</button>
+        </div>
+    </ion-content>
+</ion-view>

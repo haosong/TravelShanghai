@@ -1,5 +1,6 @@
 package cn.edu.fudan.adweb.bean;
 
+import cn.edu.fudan.adweb.recommander.CFPractical;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +27,7 @@ public class Attraction {
     private Integer wish;
     private String type;
     private String bounds;
+    private int recommand;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -198,6 +200,10 @@ public class Attraction {
         this.bounds = bounds;
     }
 
+    public void setRecommand(int recommand) {
+        this.recommand = recommand;
+    }
+
     public JSONObject toJSONObject() {
         JSONObject attraction = new JSONObject();
         try {
@@ -209,8 +215,8 @@ public class Attraction {
             JSONObject point;
             for (int i = 0; i < points.length; i += 2) {
                 point = new JSONObject();
-                point.put("lat", Double.parseDouble(points[i]));
-                point.put("lng", Double.parseDouble(points[i + 1]));
+                point.put("lng", Double.parseDouble(points[i]));
+                point.put("lat", Double.parseDouble(points[i + 1]));
                 attractionBounds.put(point);
             }
             attraction.put("bounds", attractionBounds);
@@ -222,12 +228,28 @@ public class Attraction {
             attraction.put("favor", favor);
             attraction.put("wish", wish);
             int totalRecord = rating1 + rating2 + rating3 + rating4 + rating5;
-            attraction.put("rating5", 100 * rating5 / totalRecord);
-            attraction.put("rating4", 100 * rating4 / totalRecord);
-            attraction.put("rating3", 100 * rating3 / totalRecord);
-            attraction.put("rating2", 100 * rating2 / totalRecord);
-            attraction.put("rating1", 100 * rating1 / totalRecord);
+            attraction.put("rating5", totalRecord > 0? 100 * rating5 / totalRecord: 20);
+            attraction.put("rating4", totalRecord > 0? 100 * rating4 / totalRecord: 20);
+            attraction.put("rating3", totalRecord > 0? 100 * rating3 / totalRecord: 20);
+            attraction.put("rating2", totalRecord > 0? 100 * rating2 / totalRecord: 20);
+            attraction.put("rating1", totalRecord > 0? 100 * rating1 / totalRecord: 20);
+            attraction.put("recommend", recommand);
             attraction.put("type", type);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return attraction;
+    }
+
+    public JSONObject toMiniJSONObject() {
+        JSONObject attraction = new JSONObject();
+        try {
+            attraction.put("id", id);
+            attraction.put("name", name);
+            attraction.put("rating", rating);
+            attraction.put("footprint", footprint);
+            attraction.put("favor", favor);
+            attraction.put("wish", wish);
         } catch (JSONException e) {
             e.printStackTrace();
         }

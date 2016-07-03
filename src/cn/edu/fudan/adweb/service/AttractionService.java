@@ -18,17 +18,17 @@ public class AttractionService {
 
     public List<Attraction> getAttractions(double x1, double y1, double x2, double y2) {
         String hql = String.format("from Attraction where lng>='%f'and lng<='%f' and lat>='%f' and lat<='%f' order by type", x1, x2, y1, y2);
-        return getAttractions(attractionDao.queryAttraction(hql));
+        return joinAttractions(attractionDao.queryAttraction(hql));
     }
 
     public List<Attraction> getAttractions(double x1, double y1, double x2, double y2, String type) {
         String hql = String.format("from Attraction where lng>='%f'and lng<='%f' and lat>='%f' and lat<='%f' and type='%s' order by type", x1, x2, y1, y2, type);
-        return getAttractions(attractionDao.queryAttraction(hql));
+        return joinAttractions(attractionDao.queryAttraction(hql));
     }
 
-    private List<Attraction> getAttractions(List<Attraction> attractionList) {
-        Map<String, String> params = new HashMap<>();
+    private List<Attraction> joinAttractions(List<Attraction> attractionList) {
         for (Attraction attraction: attractionList) {
+            Map<String, String> params = new HashMap<>();
             params.put("attractionId", String.valueOf(attraction.getId()));
             attraction.setFavor(count(DBConf.DB_TABLE_FAVOR, params));
             attraction.setWish(count(DBConf.DB_TABLE_WISH, params));
@@ -69,9 +69,20 @@ public class AttractionService {
     public void insert(Marker marker) {
         attractionDao.insert(marker);
     }
+    public void insert(Search search) {
+        attractionDao.insert(search);
+    }
 
     public Attraction findAttraction(int attractionId) {
         String hql = String.format("from %s where id='%s'", DBConf.DB_TABLE_ATTRACTION, attractionId);
+        List<Attraction> attractions = attractionDao.queryAttraction(hql);
+        if (attractions != null && attractions.size() > 0) {
+            return attractions.get(0);
+        }
+        return null;
+    }
+    public Attraction findAttraction(String attractionName) {
+        String hql = String.format("from %s where name='%s'", DBConf.DB_TABLE_ATTRACTION, attractionName);
         List<Attraction> attractions = attractionDao.queryAttraction(hql);
         if (attractions != null && attractions.size() > 0) {
             return attractions.get(0);
@@ -102,22 +113,23 @@ public class AttractionService {
         }
         return null;
     }
-
-    private int count(String dbTable, Map<String, String> params) {
-        String hql = String.format("select count(id) from %s", dbTable);
-        if (params != null && !params.isEmpty()) {
-            Iterator iterator = params.entrySet().iterator();
-            hql += " where";
-            while (iterator.hasNext()) {
-                Map.Entry entry = (Map.Entry) iterator.next();
-                if (iterator.hasNext()) {
-                    hql += String.format(" %s='%s' and", entry.getKey(), entry.getValue());
-                } else {
-                    hql += String.format(" %s='%s'", entry.getKey(), entry.getValue());
-                }
-            }
+    public Rating findRating(int userId, int attractionId) {
+        String hql = "from Rating where userId ='" + userId + "' and attractionId = '" + attractionId + "'";
+        List<Rating> ratings = attractionDao.queryRating(hql);
+        if (ratings != null && ratings.size() > 0) {
+            return ratings.get(0);
         }
-        return attractionDao.count(hql);
+        return null;
+    }
+
+    public void deleteFootprint(Footprint footprint) {
+        attractionDao.deleteFootprint(footprint);
+    }
+    public void deleteWish(Wish wish) {
+        attractionDao.deleteWish(wish);
+    }
+    public void deleteFavor(Favor favor) {
+        attractionDao.deleteFavor(favor);
     }
 
     public List<Marker> getMarker(int attractionId) {
@@ -128,5 +140,55 @@ public class AttractionService {
         String hql = String.format("from %s where attractionId ='%d' order by time desc", DBConf.DB_TABLE_RATING, attractionId);
         return attractionDao.queryRating(hql);
     }
+    public List<Favor> getFavor(Map<String, String> params) {
+        String hql = String.format("from %s %s", DBConf.DB_TABLE_FAVOR, getHqlWhere(params));
+        return attractionDao.queryFavor(hql);
+    }
+    public List<Wish> getWish(Map<String, String> params) {
+        String hql = String.format("from %s %s", DBConf.DB_TABLE_WISH, getHqlWhere(params));
+        return attractionDao.queryWish(hql);
+    }
+    public List<Footprint> getFootprint(Map<String, String> params) {
+        String hql = String.format("from %s %s", DBConf.DB_TABLE_FOOTPRINT, getHqlWhere(params));
+        return attractionDao.queryFootprint(hql);
+    }
+    public List<Search> getSearch(Map<String, String> params, int limit) {
+        String hql = String.format("from %s %s group by attractionId order by time desc", DBConf.DB_TABLE_SEARCH, getHqlWhere(params));
+        return attractionDao.querySearch(hql, limit);
+    }
 
+    public double getUserMeanRating(int userId) {
+        List<Rating> ratingList = getRatingByUser(userId);
+        double totalRating = 0, totalRecord = 0;
+        for (Rating rating: ratingList) {
+            totalRating += rating.getRating();
+            totalRecord++;
+        }
+        return totalRecord == 0? 0: totalRating / totalRecord;
+    }
+    public List<Rating> getRatingByUser(int userId) {
+        String hql = String.format("from %s where userId ='%d' order by time desc", DBConf.DB_TABLE_RATING, userId);
+        return attractionDao.queryRating(hql);
+    }
+
+    public int count(String dbTable, Map<String, String> params) {
+        String hql = String.format("select count(id) from %s %s", dbTable, getHqlWhere(params));
+        return attractionDao.count(hql);
+    }
+    private String getHqlWhere(Map<String, String> params) {
+        String hqlWhere = "";
+        if (params != null && !params.isEmpty()) {
+            Iterator iterator = params.entrySet().iterator();
+            hqlWhere += "where";
+            while (iterator.hasNext()) {
+                Map.Entry entry = (Map.Entry) iterator.next();
+                if (iterator.hasNext()) {
+                    hqlWhere += String.format(" %s='%s' and", entry.getKey(), entry.getValue());
+                } else {
+                    hqlWhere += String.format(" %s='%s'", entry.getKey(), entry.getValue());
+                }
+            }
+        }
+        return hqlWhere;
+    }
 }

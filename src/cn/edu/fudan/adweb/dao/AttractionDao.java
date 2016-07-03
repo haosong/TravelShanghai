@@ -16,9 +16,6 @@ public class AttractionDao {
     @Resource
     private SessionFactory sessionFactory;
 
-    public void insert(Attraction attraction) {
-        this.getSession().save(attraction);
-    }
     public void insert(Wish wish) {
         this.getSession().save(wish);
     }
@@ -33,6 +30,9 @@ public class AttractionDao {
     }
     public void insert(Marker marker) {
         this.getSession().save(marker);
+    }
+    public void insert(Search search) {
+        this.getSession().save(search);
     }
 
     public List<Attraction> queryAttraction(String hql) {
@@ -58,6 +58,22 @@ public class AttractionDao {
     public List<Marker> queryMarker(String hql) {
         Query query = this.getSession().createQuery(hql);
         return (List<Marker>) query.list();
+    }
+    public List<Search> querySearch(String hql, int limit) {
+        Query query = this.getSession().createQuery(hql);
+        query.setFirstResult(0);
+        query.setMaxResults(limit);
+        return (List<Search>) query.list();
+    }
+
+    public void deleteFootprint(Footprint footprint) {
+        this.getSession().delete(footprint);
+    }
+    public void deleteWish(Wish wish) {
+        this.getSession().delete(wish);
+    }
+    public void deleteFavor(Favor favor) {
+        this.getSession().delete(favor);
     }
 
     public int count(String hql) {

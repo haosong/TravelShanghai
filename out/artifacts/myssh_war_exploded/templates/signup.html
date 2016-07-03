@@ -1,0 +1,53 @@
+<ion-view title="注册" id="page9" ng-controller="signupController" >
+    <ion-nav-view>
+        <ion-content scroll="false" style = "margin:10px; height:100%">
+            <div class="content" style="width: 100%">
+                <div id="img-container" style="margin: 0 auto; width: 120px;">
+                    <a href="#" id="mask-file1"><img id="mask-subfile1" src="images/add.png" alt="" style="height:100px; border-radius: 100px"/></a>
+                </div>
+
+                <form style="display: none;" action="/user.do?action=register" id="signup-form" target="upload_target"  method="post" enctype="multipart/form-data" name="">
+                    <input type="text" id="signup-form-account" name="account" />
+                    <input type="text" id="signup-form-username" name="name" />
+                    <input type="text" id="signup-form-password" name="password" />
+                    <input type="text" id="signup-form-userimage" name="userImage" />
+                    <input type="file" id="image1" name="head" />
+                    <!--<input type="file" id="image1" ng-file-select="onFileSelect($files)" >-->
+                    <!--<img ng-src="{{imageSrc}}" /><br/>-->
+                </form>
+
+                <ul class="actions">
+                    <!--<li><a href="#" class="button special icon fa-upload">上传</a></li>-->
+                    <!--<li><input class="" id="signup-username"-->
+                    <!--style="background: #ffffff;color: #000000; " placeholder="username"/></li>-->
+                    <!--<li><input class="" id="signup-password"-->
+                    <!--style="background: #ffffff;color: #000000; " placeholder="password"/></li>-->
+                    <!--<li><input class="" id="signup-password2"-->
+                    <!--style="background: #ffffff;color: #000000; " placeholder="password"/></li>-->
+                    <div class="list" style="margin-top: 10px">
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">用户名</span>
+                            <input type="text" placeholder="请输入用户名" id="signup-account">
+                        </label>
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">昵称</span>
+                            <input type="text" placeholder="请输入昵称" id="signup-username">
+                        </label>
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">密码</span>
+                            <input type="password" placeholder="请输入密码" id="signup-password">
+                        </label>
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">确认密码</span>
+                            <input type="password" placeholder="再次输入密码" id="signup-password2">
+                        </label>
+                    </div>
+                    <p id="password-result" style="color: #e42112; margin-top: 5px; margin-bottom: 10px;text-align: left;"></p>
+                    <iframe id="upload_target" name="upload_target" src="" style="width:0;height:0;border:0px solid #fff;"></iframe>
+                </ul>
+            </div>
+            <button class="button button-positive button-block" id="signup-comfirm" ng-click="signUp()" style="position: absolute; bottom:120px;">注册</button>
+            <button class="button button-assertive button-block" id="signup-cancel" ui-sref="index" style="position: absolute; bottom:60px;">返回</button>
+        </ion-content>
+    </ion-nav-view>
+</ion-view>

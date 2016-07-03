@@ -8,4 +8,5 @@ public class DBConf {
     public final static String DB_TABLE_FOOTPRINT = "Footprint";
     public final static String DB_TABLE_RATING = "Rating";
     public final static String DB_TABLE_MARKER = "Marker";
+    public final static String DB_TABLE_SEARCH = "Search";
 }

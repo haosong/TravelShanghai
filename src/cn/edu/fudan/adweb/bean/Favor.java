@@ -1,5 +1,7 @@
 package cn.edu.fudan.adweb.bean;
 
+import org.json.JSONObject;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -60,5 +62,6 @@ public class Favor {
     public void setTime(Timestamp time) {
         this.time = time;
     }
+
 
 }

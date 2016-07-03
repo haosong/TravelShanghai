@@ -34,4 +34,11 @@ public class UserService {
     public void addUser(User user) {
         userDao.insert(user);
     }
+
+
+    public List<User> getUser() {
+        String hql = "from User";
+        return userDao.query(hql);
+    }
+
 }

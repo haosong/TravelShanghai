@@ -9,7 +9,6 @@ public class SessionListener implements HttpSessionListener {
 
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
-        System.out.println("hhhh");
         activeSessions++;
     }
 

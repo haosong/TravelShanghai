@@ -1,0 +1,21 @@
+<ion-view title="登录" id="page8" ng-controller="loginController">
+    <ion-nav-view>
+        <ion-content style="height: 100%;margin: 20px" scroll="false">
+            <div class="content" style="height: 100%">
+                <div class="list" style="margin-top: 10px">
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">用户名</span>
+                        <input type="text" placeholder="请输入用户名" id="login-username">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">密码</span>
+                        <input type="password" placeholder="请输入密码" id="login-password">
+                    </label>
+                </div>
+                <p id="login-result" style="color: #e42112; margin-top: 5px; margin-bottom: 20px;text-align: left;"></p>
+                <button class="button button-positive button-block" id="signup-comfirm" ng-click="logIn()" style="position: absolute; bottom:140px;">登录</button>
+                <button class="button button-assertive button-block" id="signup-cancel" ng-click="qq()" style="position: absolute; bottom:80px;">使用QQ登录</button>
+            </div>
+        </ion-content>
+    </ion-nav-view>
+</ion-view>

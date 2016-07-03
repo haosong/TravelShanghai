@@ -1,0 +1,100 @@
+<ion-view cache-view="false" title="详细资料" id="detail" class=" " ng-controller="detailController">
+    <ion-content padding="true" class="has-header">
+        <!--<p>ID = {{id}} 景点的详细资料页面</p>-->
+        <div class="card" style="margin-top: 8px">
+            <div id="{{id}}" style="width:100%;height:300px"></div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                满意度评分：
+            </div>
+            <div class="item item-text-wrap">
+                <div class="list">
+                    <a class="item item-thumbnail-left rating-percentage" href="#">
+                        <img class="rating-img" src="../img/ratings.png">
+                        <progress class="rating-progress" max="100" value="{{response.rating1}}"></progress>
+                        <progress class="rating-progress" max="100" value="{{response.rating2}}"></progress>
+                        <progress class="rating-progress" max="100" value="{{response.rating3}}"></progress>
+                        <progress class="rating-progress" max="100" value="{{response.rating4}}"></progress>
+                        <progress class="rating-progress" max="100" value="{{response.rating5}}"></progress>
+                        <div class="rating-label" style="display: block">
+                            <span class="" style="display: block">{{response.rating1}}%</span>
+                            <span class="" style="display: block">{{response.rating2}}%</span>
+                            <span class="" style="display: block">{{response.rating3}}%</span>
+                            <span class="" style="display: block">{{response.rating4}}%</span>
+                            <span class="" style="display: block">{{response.rating5}}%</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                基本信息：
+            </div>
+            <div class="item item-text-wrap">
+                <textarea rows="8" style="resize:none;width: 100%"
+                          disabled="disabled">{{response.information}}</textarea>
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                详细介绍：
+            </div>
+            <div class="item item-text-wrap">
+                <textarea rows="8" style="resize:none;width: 100%"
+                          disabled="disabled">{{response.introduction}}</textarea>
+            </div>
+        </div>
+        <div class="card" ng-show="display3D">
+            <div class="item item-divider">
+                3D模型展示：
+            </div>
+            <div class="item item-text-wrap" style="padding: 0px!important;">
+                <div id = "3d"></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                他人评论：
+            </div>
+            <div class="item item-text-wrap" >
+                <div class="list">
+                    <a class="item item-avatar" href="#" ng-repeat="comment in comments">
+                        <img ng-src="{{comment.userHead}}">
+                        <h2>{{comment.userName}}</h2>
+                        <p>评分：{{comment.rating}}</p>
+                        <p>评论：{{comment.content}}</p>
+                        <div ng-if="comment.attachmentType == 'video'">
+                            <video ng-src="{{comment.attachment}}" style="width: 100%" autoplay loop></video>
+                        </div>
+                        <div ng-if="comment.attachmentType == 'img'">
+                            <img ng-src="{{comment.attachment}}" style="width: 100%">
+                        </div>
+                        <div ng-if="comment.attachmentType == 'js'">
+                            <button ng-click="show3D(comment.attachment)">展示3D模型</button>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="background-color: rgb(255,240,240)" ng-show="isWarning">
+            <h4 style="text-align: center; color: red; width: 100%">{{warning}}</h4>
+        </div>
+        <div class="card" style="background-color: rgb(224,244,162)" ng-show="isSucess">
+            <h4 style="text-align: center; color: green; width: 100%">{{warning}}</h4>
+        </div>
+        <div style="text-align: center; margin-bottom: 20px">
+            <button class="button  button-positive button-outline" ng-click="add('Favor')">加入收藏</button>
+            <button class="button  button-positive button-outline" ng-click="add('Footprint')">加入足迹</button>
+        </div>
+        <div style="text-align: center; margin-bottom: 20px">
+            <button class="button  button-positive button-outline" ng-click="add('Wish')">加入心愿</button>
+            <button class="button  button-positive button-outline">分享景点</button>
+        </div>
+        <!--<div>-->
+            <!--<a ui-sref="main.list" id="page12-button19"-->
+               <!--class=" button button-positive  button-block ">返回项目列表页面</a>-->
+        <!--</div>-->
+    </ion-content>
+</ion-view>
